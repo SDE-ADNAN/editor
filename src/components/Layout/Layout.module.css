@@ -1,0 +1,12 @@
+.wrapper {
+  padding: 88px 24px 24px 275px;
+  background: rgb(227, 242, 253);
+  min-height: calc(112vh - 88px - 24px);
+}
+
+@media only screen and (max-width: 899px) {
+  .wrapper {
+    padding: 72px 16px 16px 16px;
+    min-height: calc(100vh - 72px - 16px);
+  }
+}

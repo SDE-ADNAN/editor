@@ -1,0 +1,24 @@
+.link{
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.link svg{
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.activeLink{
+    color: #1976d2
+}
+
+.activeLink svg{
+    color: #1976d2
+}
+
+.link:hover{
+    color: #1976d2
+}
+
+.link:hover svg{
+    color: #1976d2
+}

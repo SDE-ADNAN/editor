@@ -1,0 +1,104 @@
+.home {
+  position: relative;
+  /* width: 100vw; */
+  /* min-height: 1024px; */
+  max-height: -moz-fit-content;
+  max-height: fit-content;
+  /* overflow-y: scroll; */
+  background: #eaf3ff;
+}
+/* .no-decoration {
+} */
+a:link {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  text-decoration: none;
+  color: black;
+}
+
+.body {
+  /* padding-top: 4rem !important; */
+  margin: 0.5rem !important;
+  width: 100vw !important;
+  min-height: 90vh !important;
+  max-height: -moz-fit-content !important;
+  max-height: 100vh !important;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+.blank-page-card2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Sans:ital,wght@1,700&family=Poppins:wght@700&family=Roboto:wght@700&display=swap");
+.text {
+  width: auto;
+  height: auto;
+  left: 2px;
+  top: 0px;
+  font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "PT Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 2em;
+  margin-left: 1.3em;
+  line-height: 120%;
+  color: #102950;
+}
+
+.templateCards {
+  display: flex !important;
+  flex-direction: row;
+}
+
+.templatesCard-paper {
+  width: 95%;
+  overflow-x: scroll !important;
+  /* box-sizing: border-box; */
+  margin: 2rem 0rem;
+  background-color: transparent !important;
+}
+
+.lower-sec {
+  width: 95.5vw;
+  min-height: 10vh;
+  max-height: fit-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media only screen and (max-device-width: 620px) {
+  .text {
+    width: auto;
+    height: auto;
+    left: -1px;
+    top: 0px;
+    font-family: "Oswald", sans-serif;
+    font-family: "Poppins", sans-serif;
+    font-family: "PT Sans", sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2em;
+    margin-left: 0em;
+    line-height: 120%;
+    color: #102950;
+  }
+
+  .home {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    /* overflow-y: scroll; */
+    background: #eaf3ff;
+  }
+}

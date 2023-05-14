@@ -1,0 +1,116 @@
+.ac-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 50%;
+  opacity: 1;
+}
+.ac-icon-side-bar-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 2vw;
+  max-width: 24px;
+  opacity: 1;
+}
+.ac-icon-main {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  /* height: 60px; */
+  width: 100%;
+  gap: 0.5em;
+  opacity: 1;
+}
+.ac-icon-main-back {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  height: 5rem;
+  width: 80px;
+  opacity: 1;
+  background-color: #14376b;
+}
+
+.icon-title-Back {
+  margin-top: 0.2vh;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 120%;
+  color: #ffffff;
+}
+.icon-title {
+  width: fit-content;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 0.85vw;
+  line-height: 120%;
+  color: #0c0c0c;
+}
+
+.icon-div-main-parent {
+  background: #14376b;
+  width: 90px;
+  height: 70px;
+}
+.icon-element-main {
+  width: 90px;
+  height: 60px;
+}
+
+.sidebarIcons {
+  /* color: #000000 !important; */
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
+.fontSize {
+  font-size: 0.8rem !important;
+  font-weight: 700;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
+}
+
+.fontSize-24 {
+  font-size: 1vw !important;
+  font-weight: 500;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
+}
+
+.color {
+  color: black !important;
+}
+
+@media only screen and (max-device-width: 620px) {
+  .ac-icon-side-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 24px;
+    opacity: 1;
+  }
+  .fontSize-24 {
+    font-size: 80% !important;
+    font-weight: 100;
+    font-family: "Roboto", sans-serif;
+    display: flex;
+    justify-content: center;
+    margin-top: 1vh;
+  }
+}

@@ -1,0 +1,21 @@
+.ButtonLarge {
+  background-color: #3083ff;
+  height: 6em;
+  width: 40em;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 0px) and (max-width: 600px) {
+  .ButtonLarge {
+    background-color: #3083ff;
+    height: 3em;
+    width: 20em;
+    border-radius: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

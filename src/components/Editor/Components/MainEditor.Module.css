@@ -1,0 +1,144 @@
+body {
+  background-color: #eaf3ff !important;
+  overflow-y: hidden !important;
+}
+.hide-scoll {
+  overflow-y: hidden !important;
+}
+
+.stage {
+  background-color: #eaf3ff !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  min-width: fit-content;
+  max-width: 62vw;
+  margin: 0.05rem;
+  height: 82vh;
+  padding: 05px;
+}
+body canvas {
+  background-color: rgb(255, 255, 255) !important;
+  box-shadow: 0px 10px 10px rgb(0 0 0 / 5%), 0px 15px 64px rgb(0 0 0 / 5%);
+  /* width: 100% !impor
+  height: 100% !important; */
+}
+
+.canvas canvas {
+  /* background: rgb(255, 255, 255) !important; */
+  /* position: absolute; */
+  -webkit-transition: all 0.0001s !important;
+
+  /* width: 42px; */
+  /* height: 595px; */
+  /* left: 6% !important ;  this causes the shift of whole canvas never give in % */
+  left: 510px;
+  top: 216px;
+
+  background: #ffffff !important;
+  box-shadow: 0px 10px 10px rgb(0 0 0 / 5%), 0px 15px 64px rgb(0 0 0 / 5%);
+}
+/* .canvas {
+  background-color: #ef4e7b !important;
+  margin: 16px !important;
+} */
+.container {
+  /* min-width: 50em !important;
+  max-width: 60em !important; */
+  width: 500px;
+  background-color: rgb(235 236 240);
+  margin-top: 3%;
+  height: 86vh !important;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(235 236 240) !important;
+}
+
+/* .app > ._5TogBZahcFYUcPwZu5FIZA{
+  max-width: fit-content !important;
+} */
+
+.canvasDiv {
+  min-width: 30vw;
+  max-width: 62vw !important;
+  background-color: rgb(235 236 240) !important;
+  padding: 20px !important;
+}
+
+.sideBar {
+  width: 5vw;
+}
+.sideBarContent {
+  width: 31vw;
+}
+
+@media only screen and (max-device-width: 620px) {
+  body {
+    background-color: #eaf3ff !important;
+    overflow: auto !important;
+  }
+  body .modal-open {
+    overflow-y: hidden !important;
+    margin: -3.5px !important;
+    font-family: var(--bs-font-sans-serif) !important;
+    font-size: 1rem !important;
+    font-weight: 400 !important;
+    line-height: 1.5 !important;
+    color: #212529 !important;
+    background-color: #eaf3ff !important;
+    -webkit-text-size-adjust: 100% !important;
+    -webkit-tap-highlight-color: transparent !important;
+  }
+  .stage {
+    background-color: #005dd7 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+    min-width: fit-content;
+    max-width: 50vw;
+    margin: 1.8rem;
+    height: 50%;
+    padding: 5px;
+  }
+  .canvasDiv {
+    height: 90vh !important;
+    min-width: 100vw !important;
+    max-width: 64vw !important;
+    background-color: rgb(235 236 240) !important;
+    padding: 20px !important;
+  }
+  .canvasDiv_flex {
+    display: flex !important;
+  }
+  .sideBar {
+    width: 100%;
+  }
+  /* body .konvajs-content canvas {
+    left: 6% !important;
+  } */
+  .container {
+    width: 100% !important;
+    background-color: rgb(235 236 240) !important;
+    /* padding-top: 30px !important; */
+    padding-bottom: 30px !important;
+  }
+  .row {
+    width: 100vw !important;
+  }
+}
+
+@media only screen and (max-device-width: 620px) {
+}
+@media only screen and (max-device-width: 620px) {
+}
+@media only screen and (max-device-width: 620px) {
+}
+@media only screen and (max-device-width: 620px) {
+}
+@media only screen and (max-device-width: 620px) {
+}
