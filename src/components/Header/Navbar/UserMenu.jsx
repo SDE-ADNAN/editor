@@ -12,7 +12,7 @@ import {
 import { AccountCircle, ExitToApp } from "@mui/icons-material";
 
 import { authActions } from "../../../store/auth-slice";
-import ChangePassword from "../../../pages/AuthPages/ChangePassword";
+// import ChangePassword from "../../../pages/AuthPages/ChangePassword";
 
 function UserMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);

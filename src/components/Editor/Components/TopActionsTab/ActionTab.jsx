@@ -193,7 +193,6 @@ function ActionTab(props) {
           flip
         </button>
         <Hidden mdUp>
-          {" "}
           <div>
             <IconELement
               // style={{ marginLeft: "20rem" }}
@@ -482,10 +481,10 @@ function ActionTab(props) {
                               });
                             }}
                           >
-                            {fontFamilies.map((font) => (
+                            {fontFamilies.map((font,index) => (
                               <option
                                 value={font}
-                                key={font}
+                                key={index}
                                 // for font families
                                 style={{ fontFamily: font }}
                               >
