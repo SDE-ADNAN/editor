@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 import EditorHome from "./components/EditorDesign/EditorHome";
 import EditorTemplates from "./components/EditorDesign/EditorTemplates";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const Editor = React.lazy(() => import("./components/Editor/Editor"));
 
@@ -22,7 +23,7 @@ function App() {
           {!isLoggedIn && (
             <>
               <Route path="/" exact>
-                <EditorHome />
+                <Redirect to="/editor"/>
               </Route>
               <Route path="templates" exact>
                 <EditorTemplates />
