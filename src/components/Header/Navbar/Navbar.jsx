@@ -22,7 +22,7 @@ function Navbar(props) {
                     </IconButton>
                 </Hidden>
                 <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                   <Link to='/'  style={{ textDecoration: "none" , color: "white" }}   > EwayAdz </Link>
+                   <Link to='/'  style={{ textDecoration: "none" , color: "white" }}> Editor </Link>
                 </Typography>
                 <UserMenu />
             </Toolbar>
