@@ -1,16 +1,14 @@
-import React, { useEffect, useState, useRef, useContext } from "react";
+import React, { useEffect, useState, useRef, useContext, useCallback } from "react";
 import {
   Rect,
   Circle,
   Star,
   Transformer,
   Group,
-  Line,
   Shape,
 } from "react-konva";
 import { EditorCtx } from "../MainEditor";
 
-import download from "./DownloadPNG.png";
 // import DeleteButton from "../DeleteButton";
 
 function Shapes(props) {
@@ -23,7 +21,7 @@ function Shapes(props) {
   const trRef = useRef();
   // const deleteRef = useRef();
 
-  const checkNode = () => {
+  const checkNode = useCallback(() => {
     const selectedNode = shapeRef.current;
     // const deleteNode = deleteRef.current;
     // trRef.current?.add(deleteNode);
@@ -34,7 +32,7 @@ function Shapes(props) {
       trRef.current?.detach();
     }
     trRef.current?.getLayer().batchDraw();
-  };
+  },[props.shape.selected]);
 
   useEffect(() => {
     if (!shapeRefVisible && !trRefVisible && props.shape.selected !== null) {
@@ -42,10 +40,9 @@ function Shapes(props) {
     } else {
       checkNode();
     }
-  }, [shapeRefVisible, trRefVisible]);
+  }, [checkNode, props.shape.selected, shapeRefVisible, trRefVisible]);
 
   const shapeOnClick = (e) => {
-    const oldSelected = props.state.selectedObject;
     // console.log(shapeRef);
     if (window.innerWidth > 601) {
       Ctx.showActionMenu();
@@ -70,34 +67,34 @@ function Shapes(props) {
     }
   };
 
-  const enabledAnchorsFunc = () => {
-    if (
-      props.shape.shapeType === "star" ||
-      props.shape.shapeType === "circle"
-    ) {
-      return [
-        "top-left",
-        "top-center",
-        "top-right",
-        // "middle-right",
-        // "middle-left",
-        "bottom-left",
-        "bottom-center",
-        "bottom-right",
-      ];
-    } else {
-      return [
-        "top-left",
-        "top-center",
-        "top-right",
-        "middle-right",
-        "middle-left",
-        "bottom-left",
-        "bottom-center",
-        "bottom-right",
-      ];
-    }
-  };
+  // const enabledAnchorsFunc = () => {
+  //   if (
+  //     props.shape.shapeType === "star" ||
+  //     props.shape.shapeType === "circle"
+  //   ) {
+  //     return [
+  //       "top-left",
+  //       "top-center",
+  //       "top-right",
+  //       // "middle-right",
+  //       // "middle-left",
+  //       "bottom-left",
+  //       "bottom-center",
+  //       "bottom-right",
+  //     ];
+  //   } else {
+  //     return [
+  //       "top-left",
+  //       "top-center",
+  //       "top-right",
+  //       "middle-right",
+  //       "middle-left",
+  //       "bottom-left",
+  //       "bottom-center",
+  //       "bottom-right",
+  //     ];
+  //   }
+  // };
 
   const getShapes = () => {
     let _shape;

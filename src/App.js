@@ -3,7 +3,6 @@ import React, { Suspense } from "react";
 import { Route, Switch } from "react-router";
 import { useSelector } from "react-redux";
 
-import EditorHome from "./components/EditorDesign/EditorHome";
 import EditorTemplates from "./components/EditorDesign/EditorTemplates";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 

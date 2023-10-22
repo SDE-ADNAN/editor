@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Button, Modal, Form } from "react-bootstrap";
+import { Modal } from "react-bootstrap";
 import { EditorCtx } from "../MainEditor";
 import "./ModalComponent.css";
 
@@ -11,21 +11,21 @@ function ModalComponent(props) {
     setShow(!show);
   };
 
-  const getVariant = () => {
-    if (
-      window.innerWidth > 601 ||
-      props.heading === "Fill" ||
-      props.heading === "Opacity" ||
-      props.heading === "Stroke" ||
-      props.heading === "Border" ||
-      props.heading === "Edit Text" ||
-      props.heading === "Position"
-    ) {
-      return "";
-    } else {
-      return "white";
-    }
-  };
+  // const getVariant = () => {
+  //   if (
+  //     window.innerWidth > 601 ||
+  //     props.heading === "Fill" ||
+  //     props.heading === "Opacity" ||
+  //     props.heading === "Stroke" ||
+  //     props.heading === "Border" ||
+  //     props.heading === "Edit Text" ||
+  //     props.heading === "Position"
+  //   ) {
+  //     return "";
+  //   } else {
+  //     return "white";
+  //   }
+  // };
 
   return (
     <>

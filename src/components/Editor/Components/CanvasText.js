@@ -235,10 +235,10 @@ class CanvasText extends Component {
     // textarea.style.scaleY = textNode.scaleY;
     const rotation = textNode.rotation;
 
-    var transform = "";
-    if (rotation) {
-      transform += "rotateZ(" + rotation + "deg)";
-    }
+    // var transform = "";
+    // if (rotation) {
+    //   transform += "rotateZ(" + rotation + "deg)";
+    // }
     var px = 0;
     // also we need to slightly move textarea on firefox
     // because it jumps a bit
@@ -246,7 +246,7 @@ class CanvasText extends Component {
     if (isFirefox) {
       px += 2 + Math.round(textNode.fontSize / 20);
     }
-    transform += "translateY(-" + px + "px)";
+    // transform += "translateY(-" + px + "px)";
 
     textarea.style.transform = transform;
     // reset height

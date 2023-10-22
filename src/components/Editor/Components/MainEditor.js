@@ -284,7 +284,7 @@ const MemeGenerator = () => {
         window.removeEventListener("resize", checkSize);
       }
     };
-  }, [state.selectedObject, state.showMenu, window.innerWidth, stageRefParent]);
+  }, [state.selectedObject, state.showMenu, stageRefParent]);
 
   useEffect(() => {
     document.body.classList.add("hide-scroll");

@@ -10,21 +10,18 @@ import TextIcon from "./TextIcon.png";
 import ImportIcon from "./ImportIcon.png";
 import propsIcon from "./Properties.png";
 import ImportImages from "../TopActionsTab/images/importImages.png";
-import BgColorIcon from "./BgColorIcon.png";
 import IconELement from "../TopActionsTab/IconELement";
 import { Hidden, Paper } from "@mui/material";
 import ModalComponent from "../Modal/ModalComponent";
 import SideBarTemplateContent from "../SideBarContent/SideBarContentCard";
 import ShapeCard from "../../../EditorDesign/Cards/ShapeCard";
 import { EditorCtx } from "../MainEditor";
-import ShapesProperties from "../ObjectsProperties";
 import templateOneImage from "../Templates/Template1/templateOne.png";
 import templateTwoImage from "../Templates/Template2/templatetwo.png";
 import templateThreeImage from "../Templates/Template3/TemplateThree.png";
 import templateFourImage from "../Templates/Template4/templatefour.png";
 import templateFiveImage from "../Templates/Template5/templatefive.png";
 import templateSixImage from "../Templates/Template6/templatesix.png";
-import { Link } from "react-router-dom";
 import {
   TemplateFive,
   TemplateFour,
@@ -48,16 +45,16 @@ function SideBar(props) {
     //   setIsSelected(false)
     // }
   };
-  const handleRequest = () => {
-    handleClick("elements");
-    // props.getImagesUnsplash()
-  };
+  // const handleRequest = () => {
+  //   handleClick("elements");
+  //   // props.getImagesUnsplash()
+  // };
 
   const [photos, setPhotos] = useState([]);
   const [show, setShow] = useState(true);
-  const [title, setTitle] = useState("");
-  const [subtitle, setSubtitle] = useState("");
-  const [body, setBody] = useState("");
+  const [title, /*setTitle*/] = useState("");
+  const [subtitle, /*setSubtitle*/] = useState("");
+  const [body, /*setBody*/] = useState("");
 
   const addPexelImg = ({ type = "", e, dataUri = "" }) => {
     props.addObject({

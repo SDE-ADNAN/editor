@@ -1,9 +1,6 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { Grid, Hidden, Paper } from "@mui/material";
-import AddShapesButton from "../AddShapesButton";
-import ChangeBgButton from "../Buttons/ChangeBgButton";
-import DELETE from "../DELETE";
+import React, { useContext, useRef } from "react";
+import { Col, Container, Form, Row } from "react-bootstrap";
+import { Hidden } from "@mui/material";
 
 import DeleteIcon from "./images/Delete.png";
 import EditIcon from "./images/Edit.png";
@@ -29,15 +26,12 @@ import Forward from "./images/Forward.png";
 import FontIcon from "./images/Font.png";
 import BackIcon from "./images/Back.png";
 
-import Download from "../Download";
-import LayersMenu from "../LayersMenu";
 import "./ActionTab.css";
 import IconELement from "./IconELement";
 import ModalComponent from "../Modal/ModalComponent";
 import FillCard from "../../../EditorDesign/Cards/FillCard";
 
 import { EditorCtx } from "../MainEditor";
-import OffcanvasComponent from "../Modal/OffcanvasComponent";
 
 const solidColors = [
   "#000000",
@@ -53,20 +47,20 @@ const solidColors = [
   "#32CCBC",
   "#AF48FF",
 ];
-const gradientColors = [
-  "linear-gradient(135deg, #FDEB71 0%, #F8D800 100%)",
-  "linear-gradient(135deg, #ABDCFF 0%, #0396FF 100%)",
-  "linear-gradient(135deg, #FEB692 0%, #EA5455 100%)",
-  "linear-gradient(135deg, #CE9FFC 0%, #7367F0 100%)",
-  "linear-gradient(135deg, #90F7EC 0%, #32CCBC 100%)",
-  "linear-gradient(135deg, #FFF6B7 0%, #F6416C 100%)",
-  "linear-gradient(135deg, #81FBB8 0%, #28C76F 100%)",
-  "linear-gradient(135deg, #E2B0FF 0%, #9F44D3 100%)",
-  "linear-gradient(135deg, #FFD26F 0%, #3677FF 100%)",
-  "linear-gradient(135deg, #F1CA74 0%, #A64DB6 100%)",
-  "linear-gradient(135deg, #52E5E7 0%, #130CB7 100%)",
-  "linear-gradient(135deg, #C2FFD8 0%, #465EFB 100%)",
-];
+// const gradientColors = [
+//   "linear-gradient(135deg, #FDEB71 0%, #F8D800 100%)",
+//   "linear-gradient(135deg, #ABDCFF 0%, #0396FF 100%)",
+//   "linear-gradient(135deg, #FEB692 0%, #EA5455 100%)",
+//   "linear-gradient(135deg, #CE9FFC 0%, #7367F0 100%)",
+//   "linear-gradient(135deg, #90F7EC 0%, #32CCBC 100%)",
+//   "linear-gradient(135deg, #FFF6B7 0%, #F6416C 100%)",
+//   "linear-gradient(135deg, #81FBB8 0%, #28C76F 100%)",
+//   "linear-gradient(135deg, #E2B0FF 0%, #9F44D3 100%)",
+//   "linear-gradient(135deg, #FFD26F 0%, #3677FF 100%)",
+//   "linear-gradient(135deg, #F1CA74 0%, #A64DB6 100%)",
+//   "linear-gradient(135deg, #52E5E7 0%, #130CB7 100%)",
+//   "linear-gradient(135deg, #C2FFD8 0%, #465EFB 100%)",
+// ];
 
 const fontFamilies = [
   "Arial",
@@ -134,7 +128,6 @@ const fontFamilies = [
 function ActionTab(props) {
   let shape = props?.state?.objects[props?.index];
   const Ctx = useContext(EditorCtx);
-  const [visible, setVisible] = useState(false);
   const inputFileRef = useRef();
 
   // useEffect(() => {
