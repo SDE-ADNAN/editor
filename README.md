@@ -4,4 +4,4 @@ this project is under dev for the frontend and not yet started backend.
 
 
 
-#Deployed At --> https://startling-kelpie-200b08.netlify.app/editor
+#Deployed At --> https://edito-adnan.netlify.app/editor
