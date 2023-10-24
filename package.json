@@ -2,6 +2,9 @@
   "name": "Editor",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": "12.22.9"
+  },
   "dependencies": {
     "@emotion/react": "^11.4.1",
     "@emotion/styled": "^11.3.0",
