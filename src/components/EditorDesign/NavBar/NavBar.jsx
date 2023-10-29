@@ -10,12 +10,12 @@ function NavBar(props) {
   return (
     <div className="nav">
       <div className="back-png">
-        <div>
+        {/* <div>
           <Link to={props.linkText}>
             <img className="back-png" src={BackPNG} alt="abc"></img>
           </Link>
-        </div>
-        <Hidden mdDown>
+        </div> */}
+        {/* <Hidden mdDown>
           <div
             style={{
               color: "white",
@@ -25,7 +25,7 @@ function NavBar(props) {
           >
             <div style={{ fontSize: "1.3em" }}>Home</div>
           </div>
-        </Hidden>
+        </Hidden> */}
       </div>
       {/* <div className="heading">Editor</div> */}
       <div className="info-png">
