@@ -1,0 +1,10 @@
+import React from 'react'
+
+const BookMarkSVG = () => {
+  return (
+    <svg viewBox="0 0 100 125" fill="none" x="0px" y="0px"><path fillRule="evenodd" clipRule="evenodd" d="M75 9H25C23.8954 9 23 9.89543 23 11V89.2052C23 90.8141 24.8032 91.7645 26.1305 90.8551L48.8695 75.2746C49.5509 74.8077 50.4491 74.8077 51.1305 75.2746L73.8695 90.8551C75.1968 91.7645 77 90.8141 77 89.2052V11C77 9.89543 76.1046 9 75 9ZM53.3914 71.9748C51.3473 70.5743 48.6527 70.5743 46.6086 71.9748L27 85.4104V13H73V85.4104L53.3914 71.9748Z" fill="black"/></svg>
+  )
+}
+
+export default BookMarkSVG
+
