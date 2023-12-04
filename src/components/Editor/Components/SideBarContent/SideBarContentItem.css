@@ -4,10 +4,11 @@
   height: 14.4vw;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   overflow: hidden ;
-  background-color: rgb(138, 138, 138) ;
+  background-color: rgb(254 254 254 / 8%);
   display: flex;
   justify-content: center;
   align-items: center;
+  border: 1px solid lightslategrey;
 }
 .card img {
   width: 90%;

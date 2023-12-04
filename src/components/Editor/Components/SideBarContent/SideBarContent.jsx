@@ -197,7 +197,7 @@ function SideBarContent(props) {
   useEffect(() => {
     // getTemplates();
     if(debouncedInputValue){
-      // getImagesPexels(debouncedInputValue)
+      getImagesPexels(debouncedInputValue)
     }
   }, [debouncedInputValue]);
 
@@ -1223,7 +1223,7 @@ function SideBarContent(props) {
                       onChange={(e) => handleChange(e.target.value)}
                     />
                   </div>
-                  <Paper elevation={0} className="import-paper">
+                  <div elevation={0} className="import-paper">
                     {photos.length > 0 &&
                       photos.map((photo, index) => {
                         if (photo) {
@@ -1243,10 +1243,10 @@ function SideBarContent(props) {
                             />
                           );
                         } else {
-                          // return <p> Loading... </p>;
+                          return <p> Loading... </p>;
                         }
                       })}
-                  </Paper>
+                  </div>
                 </div>
               )}
               {!show && (

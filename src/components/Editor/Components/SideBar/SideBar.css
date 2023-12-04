@@ -228,13 +228,13 @@
   grid-gap: 0em;
   gap: 3em;
 }
-.shape-flex {
+/* .shape-flex {
   display: flex;
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
   gap: 3rem;
-}
+} */
 .title {
   display: flex;
   flex-direction: row;

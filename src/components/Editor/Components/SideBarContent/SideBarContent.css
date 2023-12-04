@@ -41,9 +41,9 @@
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
-  grid-gap: 3em;
-  gap: 3em;
   flex-direction: row;
+  row-gap: 10px;
+  justify-content: space-evenly;
 }
 
 .input {
