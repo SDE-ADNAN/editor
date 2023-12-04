@@ -1,4 +1,3 @@
-// import { Star, TramRounded } from "@mui/icons-material";
 import React, { useContext, useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 
@@ -47,11 +46,11 @@ function SideBar(props) {
   };
   // const handleRequest = () => {
   //   handleClick("elements");
-  //   // props.getImagesUnsplash()
+  //   // props.getImagesPexels()
   // };
 
   const [photos, setPhotos] = useState([]);
-  const [show, setShow] = useState(true);
+  const [show, setShow] = useState();
   const [title, /*setTitle*/] = useState("");
   const [subtitle, /*setSubtitle*/] = useState("");
   const [body, /*setBody*/] = useState("");
@@ -63,39 +62,6 @@ function SideBar(props) {
       index: props.state.selectedObject,
       src: dataUri,
       imageType: "pexelsImage",
-    });
-  };
-
-  useEffect(() => {
-    getImagesUnsplash(props.imageName);
-  }, [props.imageName]);
-
-  const getImagesUnsplash = (keyword) => {
-    // const urlUnsplash =
-    //   `https://api.unsplash.com/photos?page=${Math.floor(100 + Math.random() * 900)}`;
-    // // search/photos?page=1&query="+props.imageName+"&"+props.clientID
-    // fetch(urlUnsplash,{
-    //   method: "GET",
-    //   headers: {
-
-    //     Authorization: `Client-ID ${clientID}`,
-    //   },
-    const pexels = `https://api.pexels.com/v1/search?query=${keyword}&per_page=80`;
-    // search/photos?page=1&query="+props.imageName+"&"+props.clientID
-    fetch(pexels, {
-      method: "GET",
-      headers: {
-        Authorization: `563492ad6f917000010000014c0b0383d602447ea4fc1c573c15439b`,
-      },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json().then((data) => {
-          let imgs = JSON.parse(JSON.stringify(data));
-          setPhotos(imgs.photos);
-          // console.log(data);
-          // console.log(photos[0]);
-        });
-      }
     });
   };
 
@@ -436,15 +402,15 @@ function SideBar(props) {
                     )}
                   </div>
                 </div>
-                {show && (
+                {/* {show && ( */}
                   <div>
                     <Paper elevation={0} className="md-import-paper">
                       {photos &&
                         photos.map((photo, index) => {
                           return (
                             <SideBarTemplateContent
-                              // className="image-card_"
-                              // style={{ margin: "30px" }}
+                              className="image-card_"
+                              style={{ margin: "30px" }}
                               addPexelImg={addPexelImg}
                               width={photo.width}
                               height={photo.height}
@@ -454,12 +420,13 @@ function SideBar(props) {
                               }}
                               index={index}
                               src={photo.src.portrait}
+                              key={index}
                             />
                           );
                         })}
                     </Paper>
                   </div>
-                )}
+                {/* )} */}
                 {!show && (
                   <div className="from-device-import-section-flex">
                     <div className="from-device-import-section">

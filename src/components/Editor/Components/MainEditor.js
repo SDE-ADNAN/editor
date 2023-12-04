@@ -55,7 +55,7 @@ const MemeGenerator = () => {
     stageWidth: maxStageWidth,
     stageHeight: maxStageWidth * 1.4142,
     stageScale: 1,
-    contentType: "shapes",
+    contentType: "import",
     mainModalType: "",
     subModalType: "",
     showAcTab: false,
@@ -391,16 +391,7 @@ const MemeGenerator = () => {
     }
     // console.log(state.imageName);
   };
-  const getImagesUnsplash = () => {
-    const urlUnsplash =
-      "https://api.unsplash.com/search/photos?page=1&query=" +
-      state.imageName +
-      "&" +
-      clientID;
-    axios.get(urlUnsplash).then((res) => {
-      // console.log(res);
-    });
-  };
+
   const getObject = ({
     type,
     text,
@@ -1319,7 +1310,6 @@ const MemeGenerator = () => {
               // style={{ minWidth: "5vw" }}
             >
               <SideBar
-                getImagesUnsplash={getImagesUnsplash}
                 setContent={setContent}
                 state={state}
                 getImgDataURL={getImgDataURL}
@@ -1357,41 +1347,14 @@ const MemeGenerator = () => {
                 />
               </Grid>
             </Hidden>
-            {/* <Hidden mdUp>
-              <Grid
-                item
-                className={classes.sideBarContent}
-                // style={{ width: "31vw" }}
-              >
-                <SideBarContent
-                  getImgDataURL={getImgDataURL}
-                  addObject={addObject}
-                  state={state}
-                  imgRef={imgRef}
-                  clientID={clientID}
-                  imageName={imageName}
-                  setImageName={setImageName}
-                  handleShapeProperties={handleObjectChange}
-                  shape={objects[selectedObject]}
-                  contentType={contentType}
-                  style={{ paddingTop: "10.8vh" }}
-                />
-              </Grid>
-            </Hidden> */}
-
             <Grid
               item
               xs={12}
               className={classes.canvasDiv}
-              // style={{ minWidth: "30vw", maxWidth: "50vw" }}
             >
               <Grid container>
                 <Hidden mdDown>
                   <Grid item align="center" className={classes.main} xs={12}>
-                    {/* {state.objects.length < 1 && (
-                      <div>Add Objects to the canvas..</div>
-                    )}
-                    {state.objects.length >= 1 && ( */}
                     <ActionTab
                       addBackground={addBackground}
                       dataURL={returnDataURL}
@@ -1410,7 +1373,6 @@ const MemeGenerator = () => {
                       showMenu={state.showMenu}
                       showActionMenu={showActionMenu}
                     />
-                    {/* )} */}
                   </Grid>
                 </Hidden>
 

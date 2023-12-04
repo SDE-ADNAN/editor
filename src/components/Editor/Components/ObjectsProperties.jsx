@@ -1,69 +1,69 @@
 import React from "react";
 import { Accordion, Card, Col, Form, Row } from "react-bootstrap";
 
-// const fontFamilies = [
-//   "Arial",
-//   "Arial Black",
-//   "Bahnschrift",
-//   "Calibri",
-//   "Cambria",
-//   "Cambria Math",
-//   "Candara",
-//   "Comic Sans MS",
-//   "Consolas",
-//   "Constantia",
-//   "Corbel",
-//   "Courier New",
-//   "Ebrima",
-//   "Franklin Gothic Medium",
-//   "Gabriola",
-//   "Gadugi",
-//   "Georgia",
-//   "HoloLens MDL2 Assets",
-//   "Impact",
-//   "Ink Free",
-//   "Javanese Text",
-//   "Leelawadee UI",
-//   "Lucida Console",
-//   "Lucida Sans Unicode",
-//   "Malgun Gothic",
-//   "Marlett",
-//   "Microsoft Himalaya",
-//   "Microsoft JhengHei",
-//   "Microsoft New Tai Lue",
-//   "Microsoft PhagsPa",
-//   "Microsoft Sans Serif",
-//   "Microsoft Tai Le",
-//   "Microsoft YaHei",
-//   "Microsoft Yi Baiti",
-//   "MingLiU-ExtB",
-//   "Mongolian Baiti",
-//   "MS Gothic",
-//   "MV Boli",
-//   "Myanmar Text",
-//   "Nirmala UI",
-//   "Palatino Linotype",
-//   "Sans Serif",
-//   "Segoe MDL2 Assets",
-//   "Segoe Print",
-//   "Segoe Script",
-//   "Segoe UI",
-//   "Segoe UI Historic",
-//   "Segoe UI Emoji",
-//   "Segoe UI Symbol",
-//   "SimSun",
-//   "Sitka",
-//   "Sylfaen",
-//   "Symbol",
-//   "Roboto",
-//   "Tahoma",
-//   "Times New Roman",
-//   "Trebuchet MS",
-//   "Verdana",
-//   "Webdings",
-//   "Wingdings",
-//   "Yu Gothic",
-// ];
+const fontFamilies = [
+  "Arial",
+  "Arial Black",
+  "Bahnschrift",
+  "Calibri",
+  "Cambria",
+  "Cambria Math",
+  "Candara",
+  "Comic Sans MS",
+  "Consolas",
+  "Constantia",
+  "Corbel",
+  "Courier New",
+  "Ebrima",
+  "Franklin Gothic Medium",
+  "Gabriola",
+  "Gadugi",
+  "Georgia",
+  "HoloLens MDL2 Assets",
+  "Impact",
+  "Ink Free",
+  "Javanese Text",
+  "Leelawadee UI",
+  "Lucida Console",
+  "Lucida Sans Unicode",
+  "Malgun Gothic",
+  "Marlett",
+  "Microsoft Himalaya",
+  "Microsoft JhengHei",
+  "Microsoft New Tai Lue",
+  "Microsoft PhagsPa",
+  "Microsoft Sans Serif",
+  "Microsoft Tai Le",
+  "Microsoft YaHei",
+  "Microsoft Yi Baiti",
+  "MingLiU-ExtB",
+  "Mongolian Baiti",
+  "MS Gothic",
+  "MV Boli",
+  "Myanmar Text",
+  "Nirmala UI",
+  "Palatino Linotype",
+  "Sans Serif",
+  "Segoe MDL2 Assets",
+  "Segoe Print",
+  "Segoe Script",
+  "Segoe UI",
+  "Segoe UI Historic",
+  "Segoe UI Emoji",
+  "Segoe UI Symbol",
+  "SimSun",
+  "Sitka",
+  "Sylfaen",
+  "Symbol",
+  "Roboto",
+  "Tahoma",
+  "Times New Roman",
+  "Trebuchet MS",
+  "Verdana",
+  "Webdings",
+  "Wingdings",
+  "Yu Gothic",
+];
 function ObjectsProperties(props) {
   // useEffect(() => {
   //   // console.log(props)
@@ -104,7 +104,7 @@ function ObjectsProperties(props) {
             <Accordion.Collapse eventKey={props?.shape?.selected ? "1" : "0"}>
               <Card.Body>
                 <Row>
-                  {/* <Col xs={12}>
+                  <Col xs={12}>
                     <Form.Group>
                       <Form.Label>Opacity</Form.Label>
                       <Form.Range
@@ -122,8 +122,8 @@ function ObjectsProperties(props) {
                         }
                       />
                     </Form.Group>
-                  </Col> */}
-                  {/* {props.shape.shapeType === "circle" &&
+                  </Col>
+                  {props.shape.shapeType === "circle" &&
                     props.shape.type === "shape" && (
                       <Col md={6}>
                         <Form.Group>
@@ -143,9 +143,9 @@ function ObjectsProperties(props) {
                           />
                         </Form.Group>
                       </Col>
-                    )} */}
+                    )}
 
-                  {/* <Col md={6}>
+                  <Col md={6}>
                     <Form.Group>
                       <Form.Label>rotation</Form.Label>
                       <Form.Control
@@ -160,8 +160,8 @@ function ObjectsProperties(props) {
                         }
                       />
                     </Form.Group>
-                  </Col> */}
-                  {/* {props.shape.type !== "image" &&
+                  </Col>
+                  {props.shape.type !== "image" &&
                     props.shape.shapeType === "rect" && (
                       <>
                         <Col md={6}>
@@ -241,8 +241,8 @@ function ObjectsProperties(props) {
                           </Form.Group>
                         </Col>
                       </>
-                    )} */}
-                  {/* {props.shape.type === "shape" &&
+                    )}
+                  {props.shape.type === "shape" &&
                     props.shape.shapeType === "star" && (
                       <>
                         <Col md={6}>
@@ -300,8 +300,8 @@ function ObjectsProperties(props) {
                           </Form.Group>
                         </Col>
                       </>
-                    )} */}
-                  {/* {props.shape.type === "text" && (
+                    )}
+                  {props.shape.type === "text" && (
                     <>
                       <Col md={6}>
                         <Form.Group>
@@ -343,7 +343,7 @@ function ObjectsProperties(props) {
                         </Form.Group>
                       </Col>
                     </>
-                  )} */}
+                  )}
                   {props.shape.type === "shape" &&
                     props.shape.shapeType === "triangle" && (
                       <>
@@ -417,7 +417,7 @@ function ObjectsProperties(props) {
                       </Col>
                     </>
                   )}
-                  {/* {props.shape.type === "text" && (
+                  {props.shape.type === "text" && (
                     <>
                       <Col md={6}>
                         <Form.Group>
@@ -456,7 +456,7 @@ function ObjectsProperties(props) {
                         </Form.Group>
                       </Col>
                     </>
-                  )} */}
+                  )}
 
                   <Col md={6}>
                     <Form.Group>
@@ -494,7 +494,7 @@ function ObjectsProperties(props) {
                     </Form.Group>
                   </Col>
 
-                  {/* <Col md={6}>
+                  <Col md={6}>
                     <Form.Group>
                       <Form.Label>Stroke</Form.Label>
                       <Form.Control
@@ -510,8 +510,8 @@ function ObjectsProperties(props) {
                         }
                       />
                     </Form.Group>
-                  </Col> */}
-                  {/* <Col md={6}>
+                  </Col>
+                  <Col md={6}>
                     <Form.Group>
                       <Form.Label>Color</Form.Label>
                       <Form.Control
@@ -526,8 +526,8 @@ function ObjectsProperties(props) {
                         }
                       />
                     </Form.Group>
-                  </Col> */}
-                  {/* <Col md={6}>
+                  </Col>
+                  <Col md={6}>
                     <Form.Group>
                       <Form.Label>Stroke Width</Form.Label>
                       <Form.Control
@@ -543,8 +543,8 @@ function ObjectsProperties(props) {
                         }
                       />
                     </Form.Group>
-                  </Col> */}
-                  {/* <Col xs={6}>
+                  </Col>
+                  <Col xs={6}>
                     <Form.Group>
                       <Form.Label>Shadow Blur</Form.Label>
                       <Form.Control
@@ -559,9 +559,9 @@ function ObjectsProperties(props) {
                         }
                       />
                     </Form.Group>
-                  </Col> */}
+                  </Col>
 
-                  {/* <Col xs={12}>
+                  <Col xs={12}>
                     <Form.Group>
                       <Form.Label>Shadow Color</Form.Label>
                       <Form.Control
@@ -576,8 +576,8 @@ function ObjectsProperties(props) {
                         }}
                       />
                     </Form.Group>
-                  </Col> */}
-                  {/* <Col xs={12}>
+                  </Col>
+                  <Col xs={12}>
                     <Form.Group>
                       <Form.Label>Shadow Opacity</Form.Label>
                       <Form.Range
@@ -595,7 +595,7 @@ function ObjectsProperties(props) {
                         }
                       />
                     </Form.Group>
-                  </Col> */}
+                  </Col>
                 </Row>
               </Card.Body>
             </Accordion.Collapse>

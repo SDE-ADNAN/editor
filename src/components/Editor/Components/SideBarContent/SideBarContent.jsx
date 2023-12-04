@@ -99,7 +99,7 @@ function SideBarContent(props) {
   const [body, setBody] = useState("");
   const [templatesArr, setTemplatesArr] = useState([]);
   const [templateName, setTemplateName] = useState("");
-  const [searchText, setSearchText] = useState("");
+  const [searchText, setSearchText] = useState("abstract");
   // const [templateImg, setTemplateImg] = useState("");
 
   const inputFileRef = useRef();
@@ -197,10 +197,27 @@ function SideBarContent(props) {
   //     });
   // };
 
+  const getImagesPexels = (keyword) => {
+    const pexels = `https://api.pexels.com/v1/search?query=${keyword}&per_page=80`;
+    fetch(pexels, {
+      method: "GET",
+      headers: {
+        Authorization: `4yTHjR7enJZxkDAZTMvVyIP96BDEN7tRy6OZc3ro1QjIvzA8sp26sYRK`,
+      },
+    }).then((res) => {
+      if (res.ok) {
+        return res.json().then((data) => {
+          let imgs = JSON.parse(JSON.stringify(data));
+          setPhotos(imgs.photos);
+        });
+      }
+    });
+  };
+
   useEffect(() => {
     // getTemplates();
-    // stockImgs();
-  }, []);
+    getImagesPexels(searchText)
+  }, [searchText]);
 
   // setTimeout(() => {
   //   console.log(photos);
@@ -1226,10 +1243,9 @@ function SideBarContent(props) {
                       onChange={(e) => handleChange(e.target.value)}
                     />
                   </div>
-
                   <Paper elevation={0} className="import-paper">
-                    {filteredPhotos &&
-                      filteredPhotos.map((photo, index) => {
+                    {photos.length > 0 &&
+                      photos.map((photo, index) => {
                         if (!photo) {
                           return <p> Loading... </p>;
                         } else {
@@ -1243,7 +1259,8 @@ function SideBarContent(props) {
                                 props.getImgDataURL(event);
                               }}
                               key={index}
-                              src={photo.image}
+                              src={photo.src.large2x}
+                              template={false}
                               name={photo.name}
                             />
                           );

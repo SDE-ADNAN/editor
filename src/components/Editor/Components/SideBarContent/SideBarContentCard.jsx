@@ -96,7 +96,7 @@ function SideBarContentCard(props) {
             // className="image"
             // width="100px"
             onClick={() => Ctx.setShowmenu(false)}
-            src={props?.src}
+            src={props.src}
             crossOrigin="anonymous"
           ></img>
         </div>

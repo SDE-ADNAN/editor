@@ -369,17 +369,14 @@ function ActionTab(props) {
                   <div style={{ margin: "20px" }} className="solid-color-sec">
                     {solidColors.map((color, index) => {
                       return (
-                        <>
-                          <div>
                             <FillCard
                               color={color}
                               index={index}
                               show={true}
                               onclick={colorfill}
                               toggleMenu={Ctx.showActionMenu}
+                              key={index}
                             />
-                          </div>
-                        </>
                       );
                     })}
                   </div>
