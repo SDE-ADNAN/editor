@@ -1,8 +1,6 @@
 .strokeme {
-  /* color: white !important; */
-  height: 13px !important;
-  font-size: 20px !important;
-  font-family: "Arial" !important;
-  /* text:"Delete" */
-  fill: rgb(47, 178, 54) !important;
+  height: 13px;
+  font-size: 20px;
+  font-family: "Arial";
+  fill: rgb(47, 178, 54);
 }

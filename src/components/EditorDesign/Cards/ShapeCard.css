@@ -1,27 +1,27 @@
 .Card-main {
-  min-height: 12rem;
-  max-height: 30rem;
-  min-width: 12rem;
-  max-width: 30rem;
+  width:150px;
   background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
 }
+.Card-main .shapeCard-child-div{
+  width:100%;
+}
 
-.Card-main img {
-  width: 50%;
+.Card-main svg {
+  width: 100%;
 }
 
 @media only screen and (max-device-width: 620px) {
   .Card-main {
-    min-height: 5rem !important;
-    max-height: 8rem !important;
-    min-width: 8rem !important;
-    max-width: 9rem !important;
-    background-color: transparent !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+    min-height: 5rem ;
+    max-height: 8rem ;
+    min-width: 8rem ;
+    max-width: 9rem ;
+    background-color: transparent ;
+    display: flex ;
+    justify-content: center ;
+    align-items: center ;
   }
 }

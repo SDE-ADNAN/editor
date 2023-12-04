@@ -1,34 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+/* eslint-disable no-unused-vars */
+import React, { useContext, useState } from "react";
 
 import "./SideBar.css";
-import templateIcon from "./TemplateIcon.png";
-import Star from "../SideBarContent/star.png";
-import ShapesIcon from "./ShapesIcon.png";
-import TextIcon from "./TextIcon.png";
-import ImportIcon from "./ImportIcon.png";
-import propsIcon from "./Properties.png";
-import ImportImages from "../TopActionsTab/images/importImages.png";
-import IconELement from "../TopActionsTab/IconELement";
-import { Hidden, Paper } from "@mui/material";
-import ModalComponent from "../Modal/ModalComponent";
-import SideBarTemplateContent from "../SideBarContent/SideBarContentCard";
-import ShapeCard from "../../../EditorDesign/Cards/ShapeCard";
+import { Hidden } from "@mui/material";
 import { EditorCtx } from "../MainEditor";
-import templateOneImage from "../Templates/Template1/templateOne.png";
-import templateTwoImage from "../Templates/Template2/templatetwo.png";
-import templateThreeImage from "../Templates/Template3/TemplateThree.png";
-import templateFourImage from "../Templates/Template4/templatefour.png";
-import templateFiveImage from "../Templates/Template5/templatefive.png";
-import templateSixImage from "../Templates/Template6/templatesix.png";
-import {
-  TemplateFive,
-  TemplateFour,
-  TemplateOne,
-  TemplateSix,
-  TemplateThree,
-  TemplateTwo,
-} from "../constants";
+import TemplatesSVG from "../../../../media/sideBar_SVGS/TemplatesSVG";
+import ShapesSVG from "../../../../media/sideBar_SVGS/ShapesSVG";
+import TextSVG from "../../../../media/sideBar_SVGS/TextSVG";
+import ImportSVG from "../../../../media/sideBar_SVGS/ImportSVG";
+import StylesSVG from "../../../../media/sideBar_SVGS/StylesSVG";
 
 function SideBar(props) {
   // const [isSelected,setIsSelected ] = useState(false)\
@@ -68,7 +48,7 @@ function SideBar(props) {
   return (
     <>
       <div className="sideBarBG">
-        <Hidden mdUp>
+        {/* <Hidden mdUp>
           <ModalComponent
             heading="Templates"
             open={props.state.mainModalType === "templates"}
@@ -79,8 +59,8 @@ function SideBar(props) {
                   Ctx.setMainModalType("");
                   Ctx.setMainModalType("templates");
                 }}
-                image={templateIcon}
-                title="Templates"
+                image={templates}
+                title=""
               />
             }
             body={
@@ -129,16 +109,13 @@ function SideBar(props) {
                   handleClick("shapes");
                   Ctx.setMainModalType("shapes");
                 }}
-                image={ShapesIcon}
-                title="Shapes"
+                image={shapes}
+                title=""
               />
             }
             body={
               <>
                 <div className="shape-flex">
-                  {/* <div>
-                    <h1 className="template-heading">Shapes</h1>
-                  </div> */}
                   <ShapeCard>
                     <div
                       className="rect-shape"
@@ -182,24 +159,6 @@ function SideBar(props) {
                       ></img>
                     </div>
                   </ShapeCard>
-                  {/* <ShapeCard>
-                    <div
-                      onClick={() =>
-                        Ctx.addObject({
-                          type: "shape",
-                          shapeType: "triangle",
-                          index: props.state.selectedObject,
-                        })
-                      }
-                    >
-                      <img src={Triangle} alt="triangle"></img>
-                    </div>
-                  </ShapeCard>
-                  <ShapeCard>
-                    <div>
-                      <img src={Rect} alt="rect"></img>
-                    </div>
-                  </ShapeCard> */}
                 </div>
               </>
             }
@@ -213,39 +172,19 @@ function SideBar(props) {
                   handleClick("text");
                   Ctx.setMainModalType("text");
                 }}
-                image={TextIcon}
-                title="Text"
+                image={text}
+                title=""
               />
             }
             body={
               <>
-                {/* <div>
-                  <h1 className="template-heading">Click to add text</h1>
-                </div> */}
+                
                 <div className="flex-text">
                   <div className="title">
-                    {/* <form
-                      onSubmit={(e) => {
-                        props.addObject({
-                          type: "text",
-                          text: title,
-                          textType: "title",
-                          fontSize-sb: 56,
-                          fontFamily: "Arial",
-                          strokeWidth: 0,
-                          index: props.state.selectedObject,
-                        });
-                        e.preventDefault();
-                        // console.log(title);
-                      }}
-                    > */}
                     <div
                       type="text"
                       placeholder="Add a title"
                       className="title-text"
-                      // onChange={(e) => {
-                      //   setTitle(e.target.value);
-                      // }}
                       onClick={(e) => {
                         props.addObject({
                           type: "text",
@@ -257,37 +196,17 @@ function SideBar(props) {
                           index: props.state.selectedObject,
                         });
                         e.preventDefault();
-                        // console.log(title);
                       }}
                     >
                       Add a Title
                     </div>
-                    {/* </form> */}
                   </div>
                   <div className="subtitle">
-                    {/* <form
-                      onSubmit={(e) => {
-                        props.addObject({
-                          type: "text",
-                          text: subtitle,
-                          textType: "subtitle",
-                          fontSize-sb: 32,
-                          fontFamily: "Arial",
-                          strokeWidth: 0,
-                          index: props.state.selectedObject,
-                        });
-                        e.preventDefault();
-                      }}
-                    > */}
-                    {/* <Link to="#subtitle"> */}
                     <div
                       type="text"
                       id="subtitle"
                       placeholder="Add a subtitle"
                       className="subtitle-text"
-                      // onChange={(e) => {
-                      //   setSubtitle(e.target.value);
-                      // }}
                       onClick={(e) => {
                         props.addObject({
                           type: "text",
@@ -303,29 +222,9 @@ function SideBar(props) {
                     >
                       Add a Subtitle
                     </div>
-                    {/* </Link> */}
-                    {/* </form> */}
                   </div>
                   <div className="body-t">
-                    {/* <form
-                      onSubmit={(e) => {
-                        props.addObject({
-                          type: "text",
-                          textType: "body",
-                          text: body,
-                          fontSize-sb: 22,
-                          fontFamily: "Arial",
-                          strokeWidth: 0,
-                          index: props.state.selectedObject,
-                        });
-                        e.preventDefault();
-                        // console.log(e.target);
-                      }}
-                    > */}
                     <div
-                      // onChange={(e) => {
-                      //   setBody(e.target.value);
-                      // }}
                       type="text"
                       placeholder="Add a body"
                       className="body-text"
@@ -340,12 +239,10 @@ function SideBar(props) {
                           index: props.state.selectedObject,
                         });
                         e.preventDefault();
-                        // console.log(e.target);
                       }}
                     >
                       Add a Body
                     </div>
-                    {/* // </form> */}
                   </div>
                 </div>
               </>
@@ -360,18 +257,14 @@ function SideBar(props) {
                   handleClick("import");
                   Ctx.setMainModalType("import");
                 }}
-                image={ImportIcon}
-                title="Import"
+                image={importSVG}
+                title=""
               />
             }
             body={
               <>
-                {/* <div>
-                  <h1 className="template-heading">Import Images</h1>
-                </div> */}
                 <div className="opt-flex">
                   <div
-                    // className={!show ? "opt-text" : "opt-text-selected"}
                     className={`${
                       !show ? "opt-text-sideBar" : "opt-text-selected"
                     }`}
@@ -402,7 +295,6 @@ function SideBar(props) {
                     )}
                   </div>
                 </div>
-                {/* {show && ( */}
                   <div>
                     <Paper elevation={0} className="md-import-paper">
                       {photos &&
@@ -426,7 +318,6 @@ function SideBar(props) {
                         })}
                     </Paper>
                   </div>
-                {/* )} */}
                 {!show && (
                   <div className="from-device-import-section-flex">
                     <div className="from-device-import-section">
@@ -454,41 +345,7 @@ function SideBar(props) {
               </>
             }
           />
-          {/* <ModalComponent
-            heading="Styles"
-            button={
-              <IconELement
-                onClick={() => {
-                  handleClick("styles");
-                  Ctx.setMainModalType("styles");
-                }}
-                image={BgColorIcon}
-                title="Styles"
-              />
-            }
-            body={
-              <>
-                {props.state.selectedObject === null && (
-                  <div
-                    style={{
-                      padding: "20px",
-                      display: "block",
-                      fontSize-sb: "2em",
-                    }}
-                  >
-                    please add / select any object to edit properties....
-                  </div>
-                )}
-                {props.state.selectedObject !== null && (
-                  <ShapesProperties
-                    handleShapeProperties={props.handleShapeProperties}
-                    shape={props.shape}
-                  />
-                )}
-              </>
-            }
-          /> */}
-        </Hidden>
+        </Hidden> */}
         <Hidden mdDown>
           <div
             onClick={() => {
@@ -497,15 +354,9 @@ function SideBar(props) {
             id="elements"
             className="group"
           >
-            {/* Elements */}
             <div className="tempIcon" align="center">
-              <img
-                className=" tempIcon-image"
-                src={templateIcon}
-                alt="abc"
-              ></img>
+              <TemplatesSVG />
             </div>
-            <div className="fontSize-sb">Templates</div>
           </div>
           <div
             onClick={() => {
@@ -515,10 +366,8 @@ function SideBar(props) {
             className="group"
             style={{ paddingBottom: "1rem" }}
           >
-            {/* Templates */}
             <div className="tempIcon" align="center">
-              <img className=" tempIcon-image" src={ShapesIcon} alt="abc"></img>
-              <div className="fontSize-sb">Shapes</div>
+              <ShapesSVG />
             </div>
           </div>
           <div
@@ -529,10 +378,8 @@ function SideBar(props) {
             className="group"
             style={{ paddingBottom: "1rem" }}
           >
-            {/* Uploads */}
             <div className="tempIcon" align="center">
-              <img className=" tempIcon-image" src={TextIcon} alt="abc"></img>
-              <div className="fontSize-sb">Text</div>
+              <TextSVG />
             </div>
           </div>
           <div
@@ -543,13 +390,10 @@ function SideBar(props) {
             className="group"
             style={{ paddingBottom: "1rem" }}
           >
-            {/* Text */}
             <div className="tempIcon" align="center">
-              <img className=" tempIcon-image" src={ImportIcon} alt="abc"></img>
+              <ImportSVG />
             </div>
-            <div className="fontSize-sb">Import</div>
           </div>
-          {/* Styles */}
           <div
             onClick={() => {
               handleClick("styles");
@@ -559,12 +403,10 @@ function SideBar(props) {
             style={{ paddingBottom: "1rem" }}
           >
             <div className="tempIcon" align="center">
-              <img src={propsIcon} alt="abc"></img>
+              <StylesSVG />
             </div>
-            <div className="fontSize-sb">Properties</div>
           </div>
         </Hidden>
-        {/* //////////////////////////////////////////////////////////////////////////// */}
         <div
           onClick={() => {
             handleClick("bg-color");
@@ -573,14 +415,6 @@ function SideBar(props) {
           className="group"
           style={{ paddingBottom: "1rem" }}
         ></div>
-        {/* Styles */}
-        {/* <div className="tempIcon" align="center">
-            <img src={BgColorIcon} alt="abc"></img>
-          </div>
-          <div className="fontSize-sb">Fill</div>
-        </div> */}
-        {/* ///////////////////////////////////////////////////// */}
-        {/* ///////////////////////////////////////////////////////////// */}
       </div>
     </>
   );

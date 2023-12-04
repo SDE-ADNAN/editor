@@ -1,10 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { Paper, TextField } from "@mui/material";
+import { Paper } from "@mui/material";
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import ShapeCard from "../../../EditorDesign/Cards/ShapeCard";
 import {
-  clientID,
   TemplateFive,
   TemplateFour,
   TemplateOne,
@@ -15,26 +14,8 @@ import {
 import ShapesProperties from "../ObjectsProperties";
 import "./SideBarContent.css";
 import SideBarTemplateContent from "./SideBarContentCard";
-import Star from "./Star.svg";
-import Triangle from "./Triangle.svg";
-import hexagon from "./Hexa.svg";
-import square from "./square.svg";
-import circle from "./Circle.svg";
-import tag from "./tag.png";
-import pentagon from "./pentagon.png";
-import rightArrow from "./right-arrow.png";
-import rightTriangle from "./right-triangle.png";
-import plus from "./plus.png";
-import octagon from "./octagon.png";
-import trapezium from "./trapezium.png";
-import kite from "./kite.png";
-import parallelogram from "./parallelogram.png";
-import rhombus from "./rhombus.png";
-import scaleneTriangle from "./scaleneTriangle.png";
-import Rect from "./Rect.png";
 import FillCard from "../../../EditorDesign/Cards/FillCard";
 import ImportImages from "../TopActionsTab/images/importImages.png";
-import { Button } from "react-bootstrap";
 import { EditorCtx } from "../MainEditor";
 import templateOneImage from "../Templates/Template1/templateOne.png";
 import templateTwoImage from "../Templates/Template2/templatetwo.png";
@@ -43,6 +24,21 @@ import templateFourImage from "../Templates/Template4/templatefour.png";
 import templateFiveImage from "../Templates/Template5/templatefive.png";
 import templateSixImage from "../Templates/Template6/templatesix.png";
 import { API_URL } from "../../../../constant/apiURL";
+import BookMarkSVG from "../../../../media/shapes_SVGS/BookMarkSVG";
+import ObtuseTriangleSVG from "../../../../media/shapes_SVGS/ObtuseTriangleSVG";
+import TrapeziumSVG from "../../../../media/shapes_SVGS/TrapeziumSVG";
+import ParallelogramSVG from "../../../../media/shapes_SVGS/ParallelogramSVG";
+import KiteSVG from "../../../../media/shapes_SVGS/KiteSVG";
+import OctagonSVG from "../../../../media/shapes_SVGS/OctagonSVG";
+import PlusSVG from "../../../../media/shapes_SVGS/PlusSVG";
+import RightTriangleSVG from "../../../../media/shapes_SVGS/RightTriangleSVG";
+import RightArrowSVG from "../../../../media/shapes_SVGS/RightArrowSVG";
+import PentagonSVG from "../../../../media/shapes_SVGS/PentagonSVG";
+import HexagonSVG from "../../../../media/shapes_SVGS/HexagonSVG";
+import TriangleSVG from "../../../../media/shapes_SVGS/TriangleSVG";
+import StarSVG from "../../../../media/shapes_SVGS/StarSVG";
+import CircleSVG from "../../../../media/shapes_SVGS/CircleSVG";
+import SquareSVG from "../../../../media/shapes_SVGS/SquareSVG";
 
 const keywords = [
   "cars",
@@ -89,6 +85,33 @@ const gradientColors = [
   "linear-gradient(135deg, #C2FFD8 0%, #465EFB 100%)",
 ];
 
+const templates = [
+  {
+    img: templateOneImage,
+    obj: TemplateOne
+  },
+  {
+    img: templateTwoImage,
+    obj: TemplateTwo
+  },
+  {
+    img: templateThreeImage,
+    obj: TemplateThree
+  },
+  {
+    img: templateFourImage,
+    obj: TemplateFour
+  },
+  {
+    img: templateFiveImage,
+    obj: TemplateFive
+  },
+  {
+    img: templateSixImage,
+    obj: TemplateSix
+  },
+]
+
 function SideBarContent(props) {
   const [photos, setPhotos] = useState([]);
   const [filteredPhotos, setFilteredPhotos] = useState([...photos]);
@@ -100,37 +123,11 @@ function SideBarContent(props) {
   const [templatesArr, setTemplatesArr] = useState([]);
   const [templateName, setTemplateName] = useState("");
   const [searchText, setSearchText] = useState("abstract");
+  const [debouncedInputValue, setDebouncedInputValue] = React.useState("abstract");
   // const [templateImg, setTemplateImg] = useState("");
 
   const inputFileRef = useRef();
   const tempNameRef = useRef();
-
-  // const getTemplates = () => {
-  //   fetch(API_URL + "editor_templates/list/", {
-  //     method: "GET",
-  //     // headers: {
-  //     //   "Content-Type": "application/json",
-  //     //   Accept: "application/json",
-  //     // },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       // setTemplateImg(data[0].template_image);
-  //       setTemplatesArr([...data]);
-  //     });
-  //   // .then((res) => {
-  //   //   if (res.ok) {
-  //   //     return res.json().then((data) => {
-  //   //       // let imgs = JSON.parse(JSON.stringify(data));
-  //   //       console.log(data);
-  //   //       setTemplateImg(data[0].template_image);
-  //   //       setTemplate(data[0].template_str);
-  //   //       console.log(template);
-  //   //       // console.log(template);
-  //   //     });
-  //   //   }
-  //   // });
-  // };
 
   const Ctx = useContext(EditorCtx);
 
@@ -139,13 +136,11 @@ function SideBarContent(props) {
   };
 
   const imgChangeHandler = (event) => {
-    // console.log(event.target.innerText)
     props.setImageName(event.target.innerText);
   };
 
   const print = (e) => {
     e.preventDefault();
-    // console.log(e.target.value);
   };
 
   const addPexelImg = ({ type = "", e, dataUri = "", height, width }) => {
@@ -168,34 +163,11 @@ function SideBarContent(props) {
     formData1.append("template_image", enteredFile);
     fetch(API_URL + "editor_templates/create/", {
       method: "POST",
-      // headers: {
-      //   Accept: "application/json",
-      //   "Content-Type": "application/json",
-      // },
       body: formData1,
     }).then((res) => {
       console.log(res.ok);
     });
   };
-
-  // const stockImgs = () => {
-  //   // fetch(API_URL + "stock_images/list/", {
-  //   fetch(API_URL + "stock_images/list/", {
-  //     method: "GET",
-  //     mode: "cors",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json;charset=UTF-8",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((response) => {
-  //       const imgs = JSON.parse(JSON.stringify(response));
-  //       setPhotos(imgs);
-  //       setImgLoading(false);
-  //       setFilteredPhotos(imgs);
-  //     });
-  // };
 
   const getImagesPexels = (keyword) => {
     const pexels = `https://api.pexels.com/v1/search?query=${keyword}&per_page=80`;
@@ -214,10 +186,20 @@ function SideBarContent(props) {
     });
   };
 
+  React.useEffect(() => {
+    const timeoutId = setTimeout(() => {
+      setDebouncedInputValue(searchText);
+    }, 500);
+    return () => clearTimeout(timeoutId);
+  }, [searchText]);
+
+  
   useEffect(() => {
     // getTemplates();
-    getImagesPexels(searchText)
-  }, [searchText]);
+    if(debouncedInputValue){
+      // getImagesPexels(debouncedInputValue)
+    }
+  }, [debouncedInputValue]);
 
   // setTimeout(() => {
   //   console.log(photos);
@@ -309,7 +291,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={square} alt="rect"></img>
+                    <SquareSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -353,7 +335,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={circle} alt="circle"></img>
+                    <CircleSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -400,7 +382,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={Star} alt="star"></img>
+                    <StarSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -443,7 +425,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={Triangle} alt="triangle"></img>
+                    <TriangleSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -486,7 +468,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={hexagon} alt="hexagon"></img>
+                    <HexagonSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -529,7 +511,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={pentagon} alt="pentagon"></img>
+                    <PentagonSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -572,7 +554,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={rightArrow} alt="rightArrow"></img>
+                    <RightArrowSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -615,7 +597,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={rightTriangle} alt="rightTriangle"></img>
+                    <RightTriangleSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -658,7 +640,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={plus} alt="plusShape"></img>
+                    <PlusSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -701,7 +683,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={octagon} alt="octagon"></img>
+                    <OctagonSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -744,7 +726,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={trapezium} alt="trapezium"></img>
+                    <TrapeziumSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -787,7 +769,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={kite} alt="kite"></img>
+                    <KiteSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -830,7 +812,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={parallelogram} alt="parallelogram"></img>
+                    <ParallelogramSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -873,7 +855,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={rhombus} alt="rhombus"></img>
+                    <TrapeziumSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -916,7 +898,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={scaleneTriangle} alt="scaleneTriangle"></img>
+                    <ObtuseTriangleSVG/>
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -959,7 +941,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <img src={tag} alt="tag"></img>
+                    <BookMarkSVG/>
                   </div>
                 </ShapeCard>
               </div>
@@ -972,7 +954,7 @@ function SideBarContent(props) {
           <>
             {/* <div className="bg"> */}
             <div className="bg-template ">
-              <div>
+              {/* <div>
                 <input
                   placeholder="enter template name"
                   type="text "
@@ -1004,21 +986,21 @@ function SideBarContent(props) {
                 >
                   send json string
                 </button>
-              </div>
+              </div> */}
               <div>
                 <h1 className="template-heading">Templates</h1>
               </div>
               <div style={{ width: "100%", height: "70vh" }}>
                 <div className="template-flex">
-                  {templatesArr &&
-                    templatesArr.map((template, index) => {
-                      if (template && templatesArr.length > 0) {
+                  {templates &&
+                    templates.map((template, index) => {
+                      if (template && templates.length > 0) {
                         return (
                           <SideBarTemplateContent
                             index={index}
                             template={true}
-                            src={template.template_image}
-                            templateObj={JSON.parse(template.template_str)}
+                            src={template.img}
+                            templateObj={template.obj}
                           />
                         );
                       } else {
@@ -1214,17 +1196,15 @@ function SideBarContent(props) {
                   onClick={() => setShow(true)}
                 >
                   From Stock Images
-                  {show && <div className="under-line-1"></div>}
                 </div>
                 <div
                   className={show ? "opt-text" : "opt-text-selected"}
                   onClick={() => setShow(false)}
                 >
                   From Device
-                  {!show && <div className="under-line-2"></div>}
                 </div>
               </div>
-              {imgLoading && <p style={{ marginTop: "20px" }}> Loading... </p>}
+              {/* {imgLoading && <p style={{ marginTop: "20px" }}> Loading... </p>} */}
               {show && (
                 <div className="browse-image" style={{ marginTop: 30 }}>
                   {/* <a href="https://unsplash.com/" target="_blank">
@@ -1246,9 +1226,7 @@ function SideBarContent(props) {
                   <Paper elevation={0} className="import-paper">
                     {photos.length > 0 &&
                       photos.map((photo, index) => {
-                        if (!photo) {
-                          return <p> Loading... </p>;
-                        } else {
+                        if (photo) {
                           return (
                             <SideBarTemplateContent
                               style={{ margin: "30px" }}
@@ -1264,6 +1242,8 @@ function SideBarContent(props) {
                               name={photo.name}
                             />
                           );
+                        } else {
+                          // return <p> Loading... </p>;
                         }
                       })}
                   </Paper>

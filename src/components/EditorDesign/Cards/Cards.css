@@ -11,10 +11,8 @@
 }
 
 .recently-used-templates {
-  width: 8rem !important;
-  height: 14rem !important;
-  /* left: 0px;
-  top: 0px; */
+  width: 8rem ;
+  height: 14rem ;
   background: #bfd9ff;
   margin: 1em;
   display: flex;

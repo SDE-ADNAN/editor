@@ -6,8 +6,6 @@
   height: fit-content;
   max-height: 90%;
   top: 4.8rem;
-  /* bottom: 0; */
-  /* overflow-y: scroll !important; */
 
   background: transparent;
   box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
@@ -20,20 +18,18 @@
   cursor: pointer;
 }
 .opacity-position {
-  top: 4.8rem !important;
+  top: 4.8rem ;
 }
 .stroke-position {
-  top: 4.8rem !important;
+  top: 4.8rem ;
 }
 
 .modal-body {
-  overflow: hidden !important;
-  /* background-color: rgb(255, 255, 255) !important; */
-  /* border-radius: 0px, 0px, 0px, 10px !important; */
+  overflow: hidden ;
 }
 .modal-heading {
-  background-color: #5c85c7 !important ;
-  color: #ffff !important ;
+  background-color: #5c85c7  ;
+  color: #ffff  ;
 }
 .absolute-position {
   z-index: 9999999;
@@ -60,8 +56,8 @@
   .modal2 {
     width: 100%;
     left: 0;
-    position: sticky !important;
-    bottom: 0rem !important;
+    position: sticky ;
+    bottom: 0rem ;
     height: fit-content;
     max-height: 80%;
     top: 4rem;
@@ -74,8 +70,8 @@
   .modal-download {
     width: 100%;
     left: 0;
-    position: fixed !important;
-    bottom: 0rem !important;
+    position: fixed ;
+    bottom: 0rem ;
     height: fit-content;
     max-height: 80%;
     top: 4rem;
@@ -85,68 +81,50 @@
     flex-direction: column;
     align-items: flex-start;
   }
-  /* .modal-text {
-    width: 100%;
-    left: 0;
-    position: absolute !important;
-    bottom: 0rem !important;
-    height: fit-content;
-    max-height: 80%;
-    top: 4rem;
-    background: transparent;
-    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.15);
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  } */
   .modal-for-sideBar-Items {
-    background-color: #102950 !important ;
-    -webkit-border-top-left-radius: 36px !important;
+    -webkit-border-top-left-radius: 36px ;
     -webkit-border-top-right-radius: 36px;
     -moz-border-radius-topleft: 36px;
     -moz-border-radius-topright: 36px;
     border-top-left-radius: 36px;
     border-top-right-radius: 36px;
   }
-  .theme-bg {
-    background-color: #102950 !important ;
-  }
+
   .opacity-position {
-    bottom: 5rem !important;
+    bottom: 5rem ;
   }
   .stroke-position {
-    bottom: 5rem !important;
+    bottom: 5rem ;
   }
   .import-position {
-    bottom: 5rem !important;
-    z-index: auto !important;
+    bottom: 5rem ;
+    z-index: auto ;
   }
   .shapes-position {
-    bottom: 5rem !important;
-    z-index: auto !important;
+    bottom: 5rem ;
+    z-index: auto ;
   }
   .text-position {
-    bottom: 5rem !important;
-    z-index: auto !important;
+    bottom: 5rem ;
+    z-index: auto ;
   }
   .modal-heading {
-    background-color: #102950 !important ;
-    color: #ffff !important ;
+    color: #ffff  ;
   }
   .templates-position {
-    bottom: 5rem !important;
-    z-index: auto !important;
+    bottom: 5rem ;
+    z-index: auto ;
   }
   .position-position {
-    bottom: 5rem !important;
-    z-index: auto !important;
+    bottom: 5rem ;
+    z-index: auto ;
   }
   .fill-position {
-    bottom: 4.4rem !important;
-    z-index: auto !important;
+    bottom: 4.4rem ;
+    z-index: auto ;
   }
   .border-position {
-    bottom: 5rem !important;
-    z-index: auto !important;
+    bottom: 5rem ;
+    z-index: auto ;
   }
 }

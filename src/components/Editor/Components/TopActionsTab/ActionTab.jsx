@@ -162,7 +162,7 @@ function ActionTab(props) {
   return (
     <>
       <div className="actabBG border main">
-        <button
+        {/* <button
           onClick={() => {
             Ctx.undo();
             // console.log(props.state.historyStep);
@@ -184,7 +184,7 @@ function ActionTab(props) {
           }
         >
           flip
-        </button>
+        </button> */}
         <Hidden mdUp>
           <div>
             <IconELement

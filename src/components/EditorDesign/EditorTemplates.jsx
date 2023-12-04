@@ -44,14 +44,12 @@ function EditorTemplates() {
             onClick={() => setShow(true)}
           >
             You Might Like
-            {show && <div className="under-line-1"></div>}
           </div>
           <div
             className={show ? "opt-text" : "opt-text-selected"}
             onClick={() => setShow(false)}
           >
             Categories
-            {!show && <div className="under-line-2"></div>}
           </div>
         </div>
         {show && (

@@ -22,7 +22,6 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  /* height: 60px; */
   width: 100%;
   gap: 0.5em;
   opacity: 1;
@@ -69,13 +68,9 @@
   height: 60px;
 }
 
-.sidebarIcons {
-  /* color: #000000 !important; */
-}
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 .fontSize {
-  font-size: 0.8rem !important;
+  font-size: 0.8rem ;
   font-weight: 700;
   font-family: "Roboto", sans-serif;
   display: flex;
@@ -84,7 +79,7 @@
 }
 
 .fontSize-24 {
-  font-size: 1vw !important;
+  font-size: 1vw ;
   font-weight: 500;
   font-family: "Roboto", sans-serif;
   display: flex;
@@ -93,7 +88,7 @@
 }
 
 .color {
-  color: black !important;
+  color: black ;
 }
 
 @media only screen and (max-device-width: 620px) {
@@ -106,7 +101,7 @@
     opacity: 1;
   }
   .fontSize-24 {
-    font-size: 80% !important;
+    font-size: 80% ;
     font-weight: 100;
     font-family: "Roboto", sans-serif;
     display: flex;

@@ -341,14 +341,12 @@ function SideBarContentMD(props) {
                 onClick={() => setShow(true)}
               >
                 From Stock Images
-                {show && <div className="under-line-1"></div>}
               </div>
               <div
                 className={show ? "opt-text" : "opt-text-selected"}
                 onClick={() => setShow(false)}
               >
                 From Device
-                {!show && <div className="under-line-2"></div>}
               </div>
             </div>
             {show && (
@@ -357,7 +355,7 @@ function SideBarContentMD(props) {
                   {photos &&
                     photos.map((photo, index) => {
                       if (!photo) {
-                        return <p> Loading... </p>;
+                        // return <p> Loading... </p>;
                       } else {
                         return (
                           <SideBarTemplateContent

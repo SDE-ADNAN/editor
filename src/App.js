@@ -2,9 +2,11 @@
 import React, { Suspense } from "react";
 import { Route, Switch } from "react-router";
 import { useSelector } from "react-redux";
+import "./app.scss"
 
 import EditorTemplates from "./components/EditorDesign/EditorTemplates";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+import { bgwallpaper } from "./media";
 
 const Editor = React.lazy(() => import("./components/Editor/Editor"));
 
@@ -17,6 +19,9 @@ function App() {
 
   return (
     <div className="App">
+      <div className="image_container blur">
+        <img className="bg_img_main" src={bgwallpaper} alt={"bgimg"}></img>
+      </div>
       <Suspense fallback={<p>Loading...</p>}>
         <Switch>
           {!isLoggedIn && (
