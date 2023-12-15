@@ -26,6 +26,13 @@
 .tempIcon {
   align-self: center ;
   cursor: pointer;
+  width:50px;
+  svg{
+    width:100%;
+  }
+  &.selected svg *{
+    fill:#0080ff;
+}
 }
 .tempIcon svg *{
   fill:#bfd9ff;

@@ -12,7 +12,7 @@ function FillCard(props) {
             key={props.index}
             onClick={(e) => {
               props.onclick(e, color);
-              props.toggleMenu();
+              props.toggleMenu && props.toggleMenu();
             }}
             style={{ backgroundColor: color }}
             // style={{

@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 
-import "./SideBar.css";
+import "./SideBar.scss";
 import { Hidden } from "@mui/material";
 import { EditorCtx } from "../MainEditor";
 import TemplatesSVG from "../../../../media/sideBar_SVGS/TemplatesSVG";
@@ -354,7 +354,7 @@ function SideBar(props) {
             id="elements"
             className="group"
           >
-            <div className="tempIcon" align="center">
+            <div className={`tempIcon ${props.contentType === "templates"? "selected":""}`} align="center">
               <TemplatesSVG />
             </div>
           </div>
@@ -366,7 +366,7 @@ function SideBar(props) {
             className="group"
             style={{ paddingBottom: "1rem" }}
           >
-            <div className="tempIcon" align="center">
+            <div className={`tempIcon ${props.contentType === "shapes"? "selected":""}`} align="center">
               <ShapesSVG />
             </div>
           </div>
@@ -378,7 +378,7 @@ function SideBar(props) {
             className="group"
             style={{ paddingBottom: "1rem" }}
           >
-            <div className="tempIcon" align="center">
+            <div className={`tempIcon ${props.contentType === "text"? "selected":""}`} align="center">
               <TextSVG />
             </div>
           </div>
@@ -390,7 +390,7 @@ function SideBar(props) {
             className="group"
             style={{ paddingBottom: "1rem" }}
           >
-            <div className="tempIcon" align="center">
+            <div className={`tempIcon ${props.contentType === "import"? "selected":""}`} align="center">
               <ImportSVG />
             </div>
           </div>
@@ -402,7 +402,7 @@ function SideBar(props) {
             className="group"
             style={{ paddingBottom: "1rem" }}
           >
-            <div className="tempIcon" align="center">
+            <div className={`tempIcon ${props.contentType === "styles"? "selected":""}`} align="center">
               <StylesSVG />
             </div>
           </div>
