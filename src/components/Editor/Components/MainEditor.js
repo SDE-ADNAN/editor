@@ -56,7 +56,7 @@ const MemeGenerator = () => {
     stageWidth: maxStageWidth,
     stageHeight: maxStageWidth * 1.4142,
     stageScale: 1,
-    contentType: "shapes",
+    contentType: "templates",
     mainModalType: "",
     subModalType: "",
     showAcTab: false,
@@ -244,7 +244,7 @@ const MemeGenerator = () => {
   const checkSize = () => {
     console.log("ffffffffffffffffffffffffffffffff");
     if (stageRefParent) {
-      const width = (stageRefParent && stageRefParent.current && stageRefParent.current.offsetWidth )|| 300;
+      const width = (stageRefParent && stageRefParent.current && stageRefParent.current.offsetWidth) || 300;
       setState((state) => ({
         ...state,
         stageWidth: width,
@@ -297,7 +297,7 @@ const MemeGenerator = () => {
   }, []);
 
   function fitStageIntoParentContainer() {
-    var container = stageRefParent.current;
+    var container = stageRefParent && stageRefParent.current;
     var container2 = document.querySelector("#container");
     var canvas = document.getElementsByTagName("canvas")[0];
     // canvas.style.width += 20;
@@ -307,16 +307,16 @@ const MemeGenerator = () => {
     // console.log(container2.offsetHeight);
 
     // now we need to fit stage into parent container
-    var containerWidth = container.offsetWidth;
-    var sceneWidth = 1000;
-    var sceneHeight = 1000;
+    var containerWidth = container && container.offsetWidth;
+    var sceneWidth = container && container.offsetWidth;
+    var sceneHeight = container && container.offsetHeight;
     // but we also make the full scene visible
     // so we need to scale all objects on canvas
     var scale = containerWidth / sceneWidth;
 
-    stageRef.current.width(sceneWidth * scale);
-    stageRef.current.height(sceneHeight * scale);
-    stageRef.current.scale({ x: scale, y: scale });
+    stageRef && stageRef.current && stageRef.current.width && stageRef.current.width(sceneWidth * scale);
+    stageRef && stageRef.current && stageRef.current.height && stageRef.current.height(sceneHeight * scale);
+    stageRef && stageRef.current && stageRef.current.scale && stageRef.current.scale({ x: scale, y: scale });
     // canvas.offsetWidth = sceneWidth * scale;
     // canvas.offsetHeight = sceneHeight * scale;
 
@@ -1346,29 +1346,29 @@ const MemeGenerator = () => {
             </div>
           </Hidden>
           <div className="stage_nd_actionTab">
-          <Hidden mdDown>
-            <div className={"main"} >
-              <ActionTab
-                addBackground={addBackground}
-                dataURL={returnDataURL}
-                width={stageWidth}
-                height={stageHeight}
-                state={state}
-                shape={state.objects[state.selectedObject]}
-                index={selectedObject}
-                delete={deleteObject}
-                layerFunc={layerFunc}
-                selectedObject={selectedObject}
-                deleteALL={deleteALL}
-                addTemplate={addTemplate}
-                addObject={addObject}
-                imgRef={imgRef}
-                showMenu={state.showMenu}
-                showActionMenu={showActionMenu}
-              />
-            </div>
-          </Hidden>
-          
+            <Hidden mdDown>
+              <div className={"main"} >
+                <ActionTab
+                  addBackground={addBackground}
+                  dataURL={returnDataURL}
+                  width={stageWidth}
+                  height={stageHeight}
+                  state={state}
+                  shape={state.objects[state.selectedObject]}
+                  index={selectedObject}
+                  delete={deleteObject}
+                  layerFunc={layerFunc}
+                  selectedObject={selectedObject}
+                  deleteALL={deleteALL}
+                  addTemplate={addTemplate}
+                  addObject={addObject}
+                  imgRef={imgRef}
+                  showMenu={state.showMenu}
+                  showActionMenu={showActionMenu}
+                />
+              </div>
+            </Hidden>
+
             {state.showMenu && (
               <Hidden mdUp>
                 <div className={"main"} >
@@ -1392,137 +1392,137 @@ const MemeGenerator = () => {
               </Hidden>
             )}
             <div className="stage_wrapper">
-            <Stage
-              className="stage123"
-              // onClick={stageOnClick}
-              // draggable
-              // style={{ border: "2px solid black" }}
-              onMouseDown={(e) => {
-                checkDeselect(e);
-              }}
-              onWheel={(e) => {
-                handleWheel(e);
-              }}
-              onTouchStart={(e) => {
-                checkDeselect(e);
-              }}
-              scaleX={state.stageScale}
-              scaleY={state.stageScale}
-              // scaleX={scale}
-              // scaleY={scale}
-              // scale={scale}
-              // className={"canvas}
-              width={state.stageWidth}
-              x={state.x}
-              y={state.y}
-              height={stageWidth * 1.4142}
-              ref={stageRef}
-            >
-              <Layer>
-                <CanvasImage
-                  src={
-                    backgroundImageSrc ? backgroundImageSrc : src
-                  }
-                  width={stageWidth}
-                  triggerCors={triggerCors}
-                  height={stageHeight}
-                />
-                {objects &&
-                  objects.map((object, index) => {
-                    if (object === undefined) {
-                      return null;
-                    } else if (object.type === "image") {
-                      return (
-                        <AddedImage
-                          image={object}
-                          showActionMenu={showActionMenu}
-                          state={state}
-                          src={object.src}
-                          properties={object.properties}
-                          handleDragEnd={handleDragEnd}
-                          index={index}
-                          updateUndoRedo={updateUndoRedo}
-                          selectedImage={selectObject}
-                          handleShapeChange={handleObjectChange}
-                          onTransform={onTransform}
-                          deleteImage={() =>
-                            deleteObject({
-                              type: "image",
-                              index,
-                            })
-                          }
-                        />
-                      );
-                    } else if (object.type === "text") {
-                      return (
-                        <CanvasText
-                          scaleX={state.stageScale}
-                          scaleY={state.stageScale}
-                          input={object}
-                          showActionMenu={showActionMenu}
-                          setShowmenu={setShowmenu}
-                          handleDragEnd={handleDragEnd}
-                          deSelectObject={deSelectObject}
-                          selected={objects[selectedObject]}
-                          handleTextChange={handleObjectChange}
-                          index={index}
-                          key={index}
-                          stageRef={stageRef}
-                          state={state}
-                          setState={setState}
-                          updateUndoRedo={updateUndoRedo}
-                          stageRefParent={stageRefParent}
-                          selectedText={selectObject}
-                          onTransform={onTransform}
-                          deleteText={() =>
-                            deleteObject({
-                              type: "text",
-                              index,
-                            })
-                          }
-                        />
-                      );
-                    } else if (object.type === "shape") {
-                      return (
-                        <EditorCtx.Provider
-                          value={{
-                            showActionMenu: showActionMenu,
-                          }}
-                        >
-                          <Shapes
-                            scale={state.stageScale}
-                            shape={object}
-                            index={index}
+              <Stage
+                className="stage123"
+                // onClick={stageOnClick}
+                // draggable
+                // style={{ border: "2px solid black" }}
+                onMouseDown={(e) => {
+                  checkDeselect(e);
+                }}
+                onWheel={(e) => {
+                  handleWheel(e);
+                }}
+                onTouchStart={(e) => {
+                  checkDeselect(e);
+                }}
+                scaleX={state.stageScale}
+                scaleY={state.stageScale}
+                // scaleX={scale}
+                // scaleY={scale}
+                // scale={scale}
+                // className={"canvas}
+                width={state.stageWidth}
+                x={state.x}
+                y={state.y}
+                height={stageWidth * 1.4142}
+                ref={stageRef}
+              >
+                <Layer>
+                  <CanvasImage
+                    src={
+                      backgroundImageSrc ? backgroundImageSrc : src
+                    }
+                    width={stageWidth}
+                    triggerCors={triggerCors}
+                    height={stageHeight}
+                  />
+                  {objects &&
+                    objects.map((object, index) => {
+                      if (object === undefined) {
+                        return null;
+                      } else if (object.type === "image") {
+                        return (
+                          <AddedImage
+                            image={object}
+                            showActionMenu={showActionMenu}
                             state={state}
+                            src={object.src}
+                            properties={object.properties}
+                            handleDragEnd={handleDragEnd}
+                            index={index}
                             updateUndoRedo={updateUndoRedo}
-                            key={index}
-                            scaleX={scale}
-                            scaleY={scale}
-                            deSelectObject={deSelectObject}
+                            selectedImage={selectObject}
                             handleShapeChange={handleObjectChange}
-                            selectedShape={selectObject}
-                            selected={objects[selectedObject]}
-                            deleteShape={() =>
+                            onTransform={onTransform}
+                            deleteImage={() =>
                               deleteObject({
-                                type: "shape",
+                                type: "image",
                                 index,
                               })
                             }
-                            // handleDragStart={handleDragStart}
-
-                            handleDragEnd={handleDragEnd}
-                            onTransform={onTransform}
                           />
-                        </EditorCtx.Provider>
-                      );
-                    } else {
-                      return null;
-                    }
-                  })}
-              </Layer>
-            </Stage>
+                        );
+                      } else if (object.type === "text") {
+                        return (
+                          <CanvasText
+                            scaleX={state.stageScale}
+                            scaleY={state.stageScale}
+                            input={object}
+                            showActionMenu={showActionMenu}
+                            setShowmenu={setShowmenu}
+                            handleDragEnd={handleDragEnd}
+                            deSelectObject={deSelectObject}
+                            selected={objects[selectedObject]}
+                            handleTextChange={handleObjectChange}
+                            index={index}
+                            key={index}
+                            stageRef={stageRef}
+                            state={state}
+                            setState={setState}
+                            updateUndoRedo={updateUndoRedo}
+                            stageRefParent={stageRefParent}
+                            selectedText={selectObject}
+                            onTransform={onTransform}
+                            deleteText={() =>
+                              deleteObject({
+                                type: "text",
+                                index,
+                              })
+                            }
+                          />
+                        );
+                      } else if (object.type === "shape") {
+                        return (
+                          <EditorCtx.Provider
+                            value={{
+                              showActionMenu: showActionMenu,
+                            }}
+                          >
+                            <Shapes
+                              scale={state.stageScale}
+                              shape={object}
+                              index={index}
+                              state={state}
+                              updateUndoRedo={updateUndoRedo}
+                              key={index}
+                              scaleX={scale}
+                              scaleY={scale}
+                              deSelectObject={deSelectObject}
+                              handleShapeChange={handleObjectChange}
+                              selectedShape={selectObject}
+                              selected={objects[selectedObject]}
+                              deleteShape={() =>
+                                deleteObject({
+                                  type: "shape",
+                                  index,
+                                })
+                              }
+                              // handleDragStart={handleDragStart}
+
+                              handleDragEnd={handleDragEnd}
+                              onTransform={onTransform}
+                            />
+                          </EditorCtx.Provider>
+                        );
+                      } else {
+                        return null;
+                      }
+                    })}
+                </Layer>
+              </Stage>
             </div>
-            
+
           </div>
         </div>
       </EditorCtx.Provider>

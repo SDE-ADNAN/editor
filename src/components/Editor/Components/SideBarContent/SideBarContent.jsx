@@ -12,7 +12,7 @@ import {
   TemplateTwo,
 } from "../constants";
 import ShapesProperties from "../ObjectsProperties";
-import "./SideBarContent.css";
+import "./SideBarContent.scss";
 import SideBarTemplateContent from "./SideBarContentCard";
 import FillCard from "../../../EditorDesign/Cards/FillCard";
 import ImportImages from "../TopActionsTab/images/importImages.png";
@@ -193,10 +193,10 @@ function SideBarContent(props) {
     return () => clearTimeout(timeoutId);
   }, [searchText]);
 
-  
+
   useEffect(() => {
     // getTemplates();
-    if(debouncedInputValue){
+    if (debouncedInputValue) {
       getImagesPexels(debouncedInputValue)
     }
   }, [debouncedInputValue]);
@@ -291,7 +291,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <SquareSVG/>
+                    <SquareSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -335,7 +335,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <CircleSVG/>
+                    <CircleSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -382,7 +382,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <StarSVG/>
+                    <StarSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -425,7 +425,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <TriangleSVG/>
+                    <TriangleSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -468,7 +468,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <HexagonSVG/>
+                    <HexagonSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -511,7 +511,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <PentagonSVG/>
+                    <PentagonSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -554,7 +554,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <RightArrowSVG/>
+                    <RightArrowSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -597,7 +597,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <RightTriangleSVG/>
+                    <RightTriangleSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -640,7 +640,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <PlusSVG/>
+                    <PlusSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -683,7 +683,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <OctagonSVG/>
+                    <OctagonSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -726,7 +726,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <TrapeziumSVG/>
+                    <TrapeziumSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -769,7 +769,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <KiteSVG/>
+                    <KiteSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -812,7 +812,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <ParallelogramSVG/>
+                    <ParallelogramSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -855,7 +855,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <TrapeziumSVG/>
+                    <TrapeziumSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -898,7 +898,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <ObtuseTriangleSVG/>
+                    <ObtuseTriangleSVG />
                   </div>
                 </ShapeCard>
                 <ShapeCard>
@@ -941,7 +941,7 @@ function SideBarContent(props) {
                       });
                     }}
                   >
-                    <BookMarkSVG/>
+                    <BookMarkSVG />
                   </div>
                 </ShapeCard>
               </div>
@@ -987,32 +987,50 @@ function SideBarContent(props) {
                   send json string
                 </button>
               </div> */}
-              <div>
-                <h1 className="template-heading">Templates</h1>
+              <div className="heading_div">
+                <div className="template-heading">Templates</div>
               </div>
-              <div style={{ width: "100%", height: "70vh" }}>
-                <div className="template-flex">
-                  {templates &&
-                    templates.map((template, index) => {
-                      if (template && templates.length > 0) {
-                        return (
-                          <SideBarTemplateContent
-                            index={index}
-                            template={true}
-                            src={template.img}
-                            templateObj={template.obj}
-                          />
-                        );
-                      } else {
-                        return (
-                          <div className="blink_me" style={{ color: "yellow" }}>
-                            {" "}
-                            no templates to show
-                          </div>
-                        );
-                      }
-                    })}
-                </div>
+              <div className="template-flex">
+                {templates &&
+                  templates.map((template, index) => {
+                    if (template && templates.length > 0) {
+                      return (
+                        <SideBarTemplateContent
+                          index={index}
+                          template={true}
+                          src={template.img}
+                          templateObj={template.obj}
+                        />
+                      );
+                    } else {
+                      return (
+                        <div className="blink_me" style={{ color: "yellow" }}>
+                          {" "}
+                          no templates to show
+                        </div>
+                      );
+                    }
+                  })}
+                {templates &&
+                  templates.map((template, index) => {
+                    if (template && templates.length > 0) {
+                      return (
+                        <SideBarTemplateContent
+                          index={index}
+                          template={true}
+                          src={template.img}
+                          templateObj={template.obj}
+                        />
+                      );
+                    } else {
+                      return (
+                        <div className="blink_me" style={{ color: "yellow" }}>
+                          {" "}
+                          no templates to show
+                        </div>
+                      );
+                    }
+                  })}
               </div>
             </div>
             {/* </div> */}

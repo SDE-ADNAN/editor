@@ -4,7 +4,7 @@ import { Form } from "react-bootstrap";
 import ShapeCard from "../../../EditorDesign/Cards/ShapeCard";
 import { clientID } from "../constants";
 import ShapesProperties from "../ObjectsProperties";
-import "./SideBarContent.css";
+import "./SideBarContent.scss";
 import SideBarTemplateContent from "./SideBarContentCard";
 import Star from "./star.png";
 import Triangle from "./triangle.png";
@@ -215,8 +215,8 @@ function SideBarContentMD(props) {
                   })}
               </Paper>
             </div> */}
-            <div>
-              <h1 className="template-heading">Templates</h1>
+            <div className="heading-div">
+              <div className="template-heading">Templates</div>
             </div>
 
             {/* <input  className="input"type="text" onChange={imgChangeHandler}></input>

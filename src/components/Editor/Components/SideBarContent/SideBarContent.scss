@@ -1,12 +1,13 @@
 .bg {
   color: white;
-  padding: 3.8vh 5% 0 5% ;
+  padding: 3.8vh 5% 0 5%;
   overflow: auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .browse-image {
   width: 100%;
   height: 70vh;
@@ -15,12 +16,14 @@
   align-items: center;
   flex-direction: column;
 }
+
 .search-filter {
   flex: 1;
   width: 100%;
   display: flex;
   flex-direction: row;
 }
+
 .shape-card-flex {
   display: flex;
   align-items: center;
@@ -31,9 +34,34 @@
   color: white;
   min-height: 100vh;
   max-height: 100vh;
-  padding-top: 3.8vh ;
   background-color: #ffffff61;
   border-radius: 0 30px 30px 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  .heading_div {
+    margin: 10px;
+  }
+
+  .card {
+    width: 140px;
+
+    img {
+      width: 100%;
+      border-radius: 4px;
+    }
+  }
+
+  .template-flex {
+    padding:30px 10px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
 }
 
 .import-paper {
@@ -52,46 +80,49 @@
   height: 5vh;
   z-index: 10;
 }
+
 .bgfix {
   padding: 2rem;
 }
 
 .keyWords {
-  width: 28vw ;
-  min-height: 100px ;
-  max-height: 2000px ;
-  background-color: rgb(73, 71, 71) ;
-  border-radius: 20px ;
-  border: 3px solid #fff ;
-  display: flex ;
+  width: 28vw;
+  min-height: 100px;
+  max-height: 2000px;
+  background-color: rgb(73, 71, 71);
+  border-radius: 20px;
+  border: 3px solid #fff;
+  display: flex;
   flex-wrap: wrap;
-  gap: 0.2em ;
-  gap: 1vw ;
+  gap: 0.2em;
+  gap: 1vw;
 }
-@import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Sans:ital,wght@1,700&family=Poppins:wght@700&display=swap");
-.keyWords-item {
-  min-width: 7em ;
-  max-width: 60em ;
-  min-height: 1em ;
-  max-height: 10em ;
-  background-color: rgb(0, 247, 255) ;
-  border-radius: 12px ;
-  border: 1px solid rgb(38, 32, 32) ;
-  color: black ;
-  text-align: center ;
-  display: flex ;
-  justify-content: center ;
 
-  align-items: center ;
-  font-family: "Oswald", sans-serif ;
-  font-family: "Poppins", sans-serif ;
-  font-family: "PT Sans", sans-serif ;
-  font-size: 0.8em ;
-  cursor: pointer ;
+@import url("https://fonts.googleapis.com/css2?family=Oswald&family=PT+Sans:ital,wght@1,700&family=Poppins:wght@700&display=swap");
+
+.keyWords-item {
+  min-width: 7em;
+  max-width: 60em;
+  min-height: 1em;
+  max-height: 10em;
+  background-color: rgb(0, 247, 255);
+  border-radius: 12px;
+  border: 1px solid rgb(38, 32, 32);
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  font-family: "Oswald", sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-family: "PT Sans", sans-serif;
+  font-size: 0.8em;
+  cursor: pointer;
 }
 
 .keyWords-item:hover {
-  background-color: rgb(8, 202, 209) ;
+  background-color: rgb(8, 202, 209);
 }
 
 .flex {
@@ -102,17 +133,17 @@
 }
 
 .template-flex {
-  padding: 0 2rem;
+  padding: 0 10px;
   height: 100%;
   overflow-y: scroll;
   display: flex;
   flex-wrap: wrap;
-  align-content: flex-start ;
-  justify-content: center ;
+  align-content: flex-start;
+  justify-content: center;
   flex-direction: row;
   grid-gap: 1.5rem;
   gap: 1.5rem;
-  overflow-y: scroll !;
+  overflow-y: scroll;
 }
 
 .opt-flex {
@@ -131,6 +162,7 @@
   line-height: 120%;
   color: #919daf;
 }
+
 .opt-text-selected {
   left: 24px;
   top: 16px;
@@ -142,6 +174,7 @@
 
   color: #ffffff;
 }
+
 .opt-text:hover {
   left: 24px;
   top: 16px;
@@ -153,6 +186,7 @@
   color: #ffffff;
   cursor: pointer;
 }
+
 .under-line-1 {
   width: 200px;
   height: 8px;
@@ -179,7 +213,6 @@
   position: sticky;
   top: 8vh;
   z-index: 1;
-  margin-bottom: 1em;
   text-align: center;
 }
 
@@ -190,6 +223,7 @@
   grid-gap: 0em;
   gap: 3em;
 }
+
 .shape-flex {
   display: flex;
   align-items: center;
@@ -198,9 +232,11 @@
   gap: 1rem;
   padding-bottom: 30%;
 }
+
 .shapeCard-child-div img {
   width: 10vw;
 }
+
 .title {
   display: flex;
   flex-direction: row;
@@ -266,17 +302,21 @@
   background: #5f708a;
   outline: none;
 }
+
 .subtitle-text input {
-  outline: none ;
+  outline: none;
 }
+
 textarea:focus,
 input:focus {
   outline: none;
   outline-color: none;
 }
+
 ::placeholder {
   color: rgb(255, 255, 255);
-  opacity: 1; /* Firefox */
+  opacity: 1;
+  /* Firefox */
 }
 
 .body-t {
@@ -344,6 +384,7 @@ input:focus {
   border-left: 1em solid transparent;
   transform: rotate(35deg);
 }
+
 .five-pointed-star:before {
   border-bottom: 0.8em solid var(--star-color);
   border-left: 0.3em solid transparent;
@@ -356,6 +397,7 @@ input:focus {
   content: "";
   transform: rotate(-35deg);
 }
+
 .five-pointed-star:after {
   display: block;
   top: 0.03em;
@@ -389,6 +431,7 @@ input:focus {
   justify-content: center;
   flex-wrap: wrap;
 }
+
 .from-device-import-section-flex {
   display: flex;
   align-items: center;
@@ -423,23 +466,26 @@ input:focus {
 
 @media only screen and (max-device-width: 620px) {
   .rect-shape {
-    width: 100px ;
-    height: 100px ;
-    left: 28px ;
-    top: 26px ;
-    background: #eaf3ff ;
+    width: 100px;
+    height: 100px;
+    left: 28px;
+    top: 26px;
+    background: #eaf3ff;
   }
+
   .circle-shape {
-    width: 100px ;
-    height: 100px ;
-    left: 28px ;
-    top: 26px ;
-    background: #eaf3ff ;
-    border-radius: 128px ;
+    width: 100px;
+    height: 100px;
+    left: 28px;
+    top: 26px;
+    background: #eaf3ff;
+    border-radius: 128px;
   }
+
   .star-img {
-    width: 100px ;
+    width: 100px;
   }
+
   .title-text {
     width: 100%;
     height: 67px;

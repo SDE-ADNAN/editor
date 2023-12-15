@@ -26,7 +26,7 @@
 .tempIcon {
   align-self: center ;
   cursor: pointer;
-  width:50px;
+  width:28px;
   svg{
     width:100%;
   }
@@ -216,17 +216,6 @@
   border-radius: 20px;
 }
 
-.template-heading {
-  width: 30vw;
-  min-height: 4vh;
-  max-height: 10vh;
-  position: sticky;
-  top: 8vh;
-  z-index: 1;
-  margin-bottom: 1em;
-  text-align: center;
-  font-size: 24px;
-}
 
 .flex-template {
   display: flex;
