@@ -6,4 +6,5 @@ use Node Version : 12.22.9
 
 
 
-#Deployed At --> https://edito-adnan.netlify.app/editor
+#Deployed At --> https://edito-adnan.netlify.app/editor // netlify
+#Deployed At --> https://editor.3621.lol/editor // AWS cloudfront+s3+godaddy domain
