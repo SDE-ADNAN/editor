@@ -1,0 +1,28 @@
+[build]
+  publish = "build"
+  command = "npm run build:netlify"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_FLAGS = "--legacy-peer-deps"
+  NODE_OPTIONS = "--max_old_space_size=4096"
+  GENERATE_SOURCEMAP = "false"
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[build.processing]
+  skip_processing = false
+
+[build.processing.css]
+  bundle = true
+  minify = true
+
+[build.processing.js]
+  bundle = true
+  minify = true
+
+[build.processing.html]
+  pretty_urls = true
