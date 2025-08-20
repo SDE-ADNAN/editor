@@ -1387,10 +1387,10 @@ const MemeGenerator = () => {
               />
             </div>
             {/* Canvas Area */}
-            <div className="flex-1 flex items-center justify-center p-8 bg-gradient-to-br from-gray-50 to-gray-100">
-              <div className="relative">
+            <div className="flex-1 flex items-center justify-center p-4 bg-gradient-to-br from-gray-50 to-gray-100">
+              <div className="relative w-full h-full max-w-4xl max-h-[80vh]">
                 {/* Canvas Container */}
-                <div className="bg-white shadow-2xl rounded-xl border border-gray-200 overflow-hidden">
+                <div className="bg-white shadow-2xl rounded-xl border border-gray-200 overflow-hidden w-full h-full flex items-center justify-center">
                   <Stage
                     className="[&>canvas]:bg-white"
                     onMouseDown={(e) => {
@@ -1404,10 +1404,10 @@ const MemeGenerator = () => {
                     }}
                     scaleX={state.stageScale}
                     scaleY={state.stageScale}
-                    width={state.stageWidth}
+                    width={Math.min(800, window.innerWidth - 500)}
                     x={state.x}
                     y={state.y}
-                    height={stageWidth * 1.4142}
+                    height={Math.min(600, (window.innerWidth - 500) * 0.75)}
                     ref={stageRef}
                   >
                 <Layer>
@@ -1415,9 +1415,9 @@ const MemeGenerator = () => {
                     src={
                       backgroundImageSrc ? backgroundImageSrc : src
                     }
-                    width={stageWidth}
+                    width={Math.min(800, window.innerWidth - 500)}
                     triggerCors={triggerCors}
-                    height={stageHeight}
+                    height={Math.min(600, (window.innerWidth - 500) * 0.75)}
                   />
                   {objects &&
                     objects.map((object, index) => {
@@ -1515,21 +1515,106 @@ const MemeGenerator = () => {
                   </Stage>
                 </div>
                 
-                {/* Page Indicator & Zoom Controls */}
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white px-4 py-2 rounded-full flex items-center space-x-4">
-                  <button className="hover:bg-white hover:bg-opacity-20 p-1 rounded">
-                    ← Pages
+
+              </div>
+              
+              {/* Control Panel - Right Side */}
+              <div className="absolute bottom-6 right-6 flex flex-col space-y-4">
+                {/* Zoom Controls */}
+                <div className="bg-white shadow-lg rounded-xl border border-gray-200 px-4 py-2 flex items-center space-x-3">
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12H9" />
+                    </svg>
                   </button>
-                  <span className="text-sm">60%</span>
-                  <button className="hover:bg-white hover:bg-opacity-20 p-1 rounded">
-                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                  <span className="text-sm font-medium text-gray-900 min-w-[3rem] text-center">100%</span>
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Pages Control */}
+                <div className="bg-white shadow-lg rounded-xl border border-gray-200 px-4 py-2 flex items-center space-x-3">
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                    </svg>
+                  </button>
+                  <span className="text-sm font-medium text-gray-900">1 / 1</span>
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors">
+                    <svg className="w-4 h-4 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Fit to Screen Control */}
+                <div className="bg-white shadow-lg rounded-xl border border-gray-200 p-2">
+                  <button className="p-2 hover:bg-gray-100 rounded-lg transition-colors group" title="Fit to Screen">
+                    <svg className="w-4 h-4 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4a2 2 0 012-2h2M4 16v4a2 2 0 002 2h2m8-20h2a2 2 0 012 2v2m0 8v4a2 2 0 01-2 2h-2" />
                     </svg>
                   </button>
                 </div>
               </div>
             </div>
 
+          </div>
+        </div>
+        
+        {/* Bottom Floating Toolbar */}
+        <div className="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="bg-white shadow-2xl rounded-2xl border border-gray-200 px-6 py-3 flex items-center space-x-6 backdrop-blur-sm bg-opacity-95">
+            {/* Zoom Out */}
+            <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors group">
+              <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12H9" />
+              </svg>
+            </button>
+            
+            {/* Zoom Level */}
+            <div className="flex items-center space-x-2">
+              <span className="text-sm font-medium text-gray-900">100%</span>
+            </div>
+            
+            {/* Zoom In */}
+            <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors group">
+              <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v3m0 0v3m0-3h3m-3 0H9" />
+              </svg>
+            </button>
+            
+            {/* Divider */}
+            <div className="w-px h-6 bg-gray-200"></div>
+            
+            {/* Fit to Screen */}
+            <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors group" title="Fit to Screen">
+              <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4a2 2 0 012-2h2M4 16v4a2 2 0 002 2h2m8-20h2a2 2 0 012 2v2m0 8v4a2 2 0 01-2 2h-2" />
+              </svg>
+            </button>
+            
+            {/* Divider */}
+            <div className="w-px h-6 bg-gray-200"></div>
+            
+            {/* Previous Page */}
+            <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors group">
+              <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+              </svg>
+            </button>
+            
+            {/* Page Counter */}
+            <span className="text-sm font-medium text-gray-900 px-2">1 / 1</span>
+            
+            {/* Next Page */}
+            <button className="p-2 hover:bg-blue-50 rounded-lg transition-colors group">
+              <svg className="w-5 h-5 text-gray-600 group-hover:text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </button>
           </div>
         </div>
       </EditorCtx.Provider>

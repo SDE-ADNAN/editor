@@ -180,8 +180,15 @@ function SideBarContent(props) {
         return res.json().then((data) => {
           let imgs = JSON.parse(JSON.stringify(data));
           setPhotos(imgs.photos);
+          setFilteredPhotos(imgs.photos); // Set filtered photos as well
+          setImgLoading(false); // Clear loading state after photos are fetched
         });
+      } else {
+        setImgLoading(false); // Clear loading on error
       }
+    }).catch((error) => {
+      console.error('Error fetching images:', error);
+      setImgLoading(false); // Clear loading on network error
     });
   };
 
@@ -196,6 +203,7 @@ function SideBarContent(props) {
   useEffect(() => {
     // getTemplates();
     if (debouncedInputValue) {
+      setImgLoading(true); // Set loading to true before API call
       getImagesPexels(debouncedInputValue)
     }
   }, [debouncedInputValue]);
@@ -228,6 +236,7 @@ function SideBarContent(props) {
         );
       });
       setFilteredPhotos(result);
+      setImgLoading(false); // Clear loading after filtering is complete
     }
   };
 
@@ -299,111 +308,158 @@ function SideBarContent(props) {
         break;
       case "import":
         content = (
-          <div className="p-6">
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">Upload</h2>
-              <p className="text-sm text-gray-600">Add images to your design</p>
-            </div>
-            
-            {/* Tab Navigation */}
-            <div className="flex border-b border-gray-200 mb-6">
-              <button
-                className={`px-4 py-2 text-sm font-medium ${
-                  show
-                    ? "text-blue-600 border-b-2 border-blue-600"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-                onClick={() => setShow(true)}
-              >
-                Stock Images
-              </button>
-              <button
-                className={`px-4 py-2 text-sm font-medium ${
-                  !show
-                    ? "text-blue-600 border-b-2 border-blue-600"
-                    : "text-gray-500 hover:text-gray-700"
-                }`}
-                onClick={() => setShow(false)}
-              >
-                Upload
-              </button>
+          <div className="h-full bg-white">
+            {/* Header */}
+            <div className="p-6 border-b border-gray-200">
+              <div className="flex space-x-8 border-b border-gray-200 -mb-px">
+                <button
+                  className={`px-1 py-3 text-sm font-medium border-b-2 transition-colors ${
+                    show
+                      ? "text-blue-600 border-blue-600"
+                      : "text-gray-500 hover:text-gray-700 border-transparent"
+                  }`}
+                  onClick={() => setShow(true)}
+                >
+                  Stock
+                </button>
+                <button
+                  className={`px-1 py-3 text-sm font-medium border-b-2 transition-colors ${
+                    !show
+                      ? "text-blue-600 border-blue-600"
+                      : "text-gray-500 hover:text-gray-700 border-transparent"
+                  }`}
+                  onClick={() => setShow(false)}
+                >
+                  Upload
+                </button>
+              </div>
             </div>
 
-            {show && (
-              <div>
-                {/* Search Input */}
-                <div className="mb-4">
-                  <input
-                    type="text"
-                    placeholder="Search for images..."
-                    value={searchText}
-                    onChange={(e) => handleChange(e.target.value)}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                  />
+            <div className="p-6">
+              {show && (
+                <div>
+                  {/* Search Input */}
+                  <div className="mb-6">
+                    <div className="relative">
+                      <input
+                        type="text"
+                        placeholder="Search for images..."
+                        value={searchText}
+                        onChange={(e) => handleChange(e.target.value)}
+                        className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 bg-gray-50 hover:bg-white transition-colors"
+                      />
+                      <svg className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                      </svg>
+                    </div>
+                  </div>
+                  
+                  {/* Image Grid */}
+                  <div className="grid grid-cols-2 gap-3 max-h-96 overflow-y-auto scrollbar-hide">
+                    {imgLoading && (
+                      <div className="col-span-2 flex items-center justify-center py-12">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
+                      </div>
+                    )}
+                    {!imgLoading && filteredPhotos.length > 0 ? (
+                      filteredPhotos.map((photo, index) => (
+                        <div
+                          key={index}
+                          className="group aspect-square overflow-hidden rounded-xl cursor-pointer bg-gray-100 hover:shadow-lg transition-all duration-200 hover:scale-[1.02]"
+                          onClick={() => {
+                            addPexelImg({
+                              type: "image",
+                              dataUri: photo.src.large2x,
+                              height: photo.height,
+                              width: photo.width,
+                            });
+                          }}
+                        >
+                          <img
+                            src={photo.src.medium}
+                            alt={photo.alt || "Stock photo"}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                          />
+                          <div className="absolute inset-0 bg-black opacity-0 group-hover:opacity-20 transition-opacity duration-200"></div>
+                        </div>
+                      ))
+                    ) : !imgLoading && (
+                      <div className="col-span-2 text-center py-12">
+                        <div className="text-gray-400 mb-4">
+                          <svg className="mx-auto h-12 w-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                          </svg>
+                        </div>
+                        <p className="text-gray-500 text-sm">Search for images above</p>
+                      </div>
+                    )}
+                  </div>
                 </div>
-                
-                {/* Image Grid */}
-                <div className="grid grid-cols-2 gap-3 max-h-96 overflow-y-auto">
-                  {photos.length > 0 ? (
-                    photos.map((photo, index) => (
-                      <div
-                        key={index}
-                        className="aspect-square overflow-hidden rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
-                        onClick={() => {
-                          addPexelImg({
+              )}
+
+              {!show && (
+                <div className="space-y-6">
+                  {/* Upload Area */}
+                  <div className="border-2 border-dashed border-gray-200 rounded-2xl p-8 text-center hover:border-blue-300 hover:bg-blue-50/30 transition-all duration-200 group">
+                    <label className="cursor-pointer block">
+                      <div className="mb-4">
+                        <div className="mx-auto w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mb-4 group-hover:bg-blue-200 transition-colors">
+                          <svg className="w-8 h-8 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+                          </svg>
+                        </div>
+                      </div>
+                      <div>
+                        <span className="text-lg font-medium text-gray-900 group-hover:text-blue-600 transition-colors">
+                          Drop an image here
+                        </span>
+                        <p className="text-sm text-gray-500 mt-1">
+                          or <span className="text-blue-600 font-medium">browse files</span>
+                        </p>
+                      </div>
+                      <Form.Control
+                        type="file"
+                        ref={props.imgRef}
+                        onChange={(e) => {
+                          props.addObject({
                             type: "image",
-                            dataUri: photo.src.large2x,
-                            height: photo.height,
-                            width: photo.width,
+                            e,
+                            index: props.state.selectedObject,
                           });
                         }}
-                      >
-                        <img
-                          src={photo.src.medium}
-                          alt={photo.alt || "Stock photo"}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                    ))
-                  ) : (
-                    <div className="col-span-2 text-center py-8 text-gray-500">
-                      <p>Search for images above</p>
+                        accept="image/*"
+                        hidden
+                      />
+                    </label>
+                    <div className="mt-4 pt-4 border-t border-gray-100">
+                      <p className="text-xs text-gray-400">
+                        Supports JPG, PNG, GIF, WebP • Max 10MB
+                      </p>
                     </div>
-                  )}
-                </div>
-              </div>
-            )}
-
-            {!show && (
-              <div className="text-center">
-                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-gray-400 transition-colors">
-                  <div className="mb-4">
-                    <img src={ImportImages} alt="Upload" className="mx-auto w-12 h-12 opacity-50" />
                   </div>
-                  <label className="cursor-pointer">
-                    <span className="text-sm text-gray-600 hover:text-gray-800">
-                      Click to upload an image
-                    </span>
-                    <Form.Control
-                      type="file"
-                      ref={props.imgRef}
-                      onChange={(e) => {
-                        props.addObject({
-                          type: "image",
-                          e,
-                          index: props.state.selectedObject,
-                        });
-                      }}
-                      accept="image/*"
-                      hidden
-                    />
-                  </label>
-                  <p className="text-xs text-gray-400 mt-2">
-                    Supports: JPG, PNG, GIF, WebP
-                  </p>
+
+                  {/* Quick Upload Actions */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <button className="p-4 border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50/30 transition-all group">
+                      <div className="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center mb-2 mx-auto group-hover:bg-purple-200">
+                        <svg className="w-4 h-4 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path fillRule="evenodd" d="M4 3a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V5a2 2 0 00-2-2H4zm12 12H4l4-8 3 6 2-4 3 6z" clipRule="evenodd" />
+                        </svg>
+                      </div>
+                      <span className="text-xs font-medium text-gray-700">From URL</span>
+                    </button>
+                    <button className="p-4 border border-gray-200 rounded-xl hover:border-blue-300 hover:bg-blue-50/30 transition-all group">
+                      <div className="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center mb-2 mx-auto group-hover:bg-green-200">
+                        <svg className="w-4 h-4 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                      </div>
+                      <span className="text-xs font-medium text-gray-700">AI Generate</span>
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
         );
         break;

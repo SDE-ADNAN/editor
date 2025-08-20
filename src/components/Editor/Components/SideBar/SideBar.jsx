@@ -68,7 +68,7 @@ function SideBar(props) {
               <div className="mb-1">
                 <MdApps className="w-6 h-6" />
               </div>
-              <span className="text-xs font-medium">Icons</span>
+              <span className="text-xs font-medium">Templates</span>
               {props.contentType === "templates" && (
                 <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
               )}
