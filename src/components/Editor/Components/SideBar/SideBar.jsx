@@ -1,14 +1,21 @@
 /* eslint-disable no-unused-vars */
 import React, { useContext, useState } from "react";
 
-import "./SideBar.scss";
-import { Hidden } from "@mui/material";
+
 import { EditorCtx } from "../MainEditor";
-import TemplatesSVG from "../../../../media/sideBar_SVGS/TemplatesSVG";
-import ShapesSVG from "../../../../media/sideBar_SVGS/ShapesSVG";
-import TextSVG from "../../../../media/sideBar_SVGS/TextSVG";
-import ImportSVG from "../../../../media/sideBar_SVGS/ImportSVG";
-import StylesSVG from "../../../../media/sideBar_SVGS/StylesSVG";
+import { 
+  MdApps, 
+  MdTextFields, 
+  MdCrop, 
+  MdCloudUpload, 
+  MdPalette,
+  MdLayers,
+  MdAspectRatio,
+  MdFormatQuote,
+  MdQrCode,
+  MdVideoLibrary,
+  MdAutoAwesome
+} from "react-icons/md";
 
 function SideBar(props) {
   // const [isSelected,setIsSelected ] = useState(false)\
@@ -46,377 +53,210 @@ function SideBar(props) {
   };
 
   return (
-    <>
-      <div className="sideBarBG">
-        {/* <Hidden mdUp>
-          <ModalComponent
-            heading="Templates"
-            open={props.state.mainModalType === "templates"}
-            button={
-              <IconELement
-                onClick={() => {
-                  handleClick("templates");
-                  Ctx.setMainModalType("");
-                  Ctx.setMainModalType("templates");
-                }}
-                image={templates}
-                title=""
-              />
-            }
-            body={
-              <>
-                <div className="flex-template">
-                  <SideBarTemplateContent
-                    template={true}
-                    src={templateOneImage}
-                    templateObj={TemplateOne}
-                  />
-                  <SideBarTemplateContent
-                    template={true}
-                    src={templateTwoImage}
-                    templateObj={TemplateTwo}
-                  />
-                  <SideBarTemplateContent
-                    template={true}
-                    src={templateThreeImage}
-                    templateObj={TemplateThree}
-                  />
-                  <SideBarTemplateContent
-                    template={true}
-                    src={templateFourImage}
-                    templateObj={TemplateFour}
-                  />
-                  <SideBarTemplateContent
-                    template={true}
-                    src={templateFiveImage}
-                    templateObj={TemplateFive}
-                  />
-                  <SideBarTemplateContent
-                    template={true}
-                    src={templateSixImage}
-                    templateObj={TemplateSix}
-                  />
-                </div>
-              </>
-            }
-          />
-          <ModalComponent
-            heading="Shapes"
-            open={props.state.mainModalType === "shapes"}
-            button={
-              <IconELement
-                onClick={() => {
-                  handleClick("shapes");
-                  Ctx.setMainModalType("shapes");
-                }}
-                image={shapes}
-                title=""
-              />
-            }
-            body={
-              <>
-                <div className="shape-flex">
-                  <ShapeCard>
-                    <div
-                      className="rect-shape"
-                      onClick={() => {
-                        Ctx.setShowmenu(false);
-                        Ctx.addObject({
-                          type: "shape",
-                          shapeType: "rect",
-                          index: props.state.selectedObject,
-                        });
-                      }}
-                    ></div>
-                  </ShapeCard>
-                  <ShapeCard>
-                    <div
-                      className="circle-shape"
-                      onClick={() => {
-                        Ctx.setShowmenu(false);
-                        Ctx.addObject({
-                          type: "shape",
-                          shapeType: "circle",
-                          index: props.state.selectedObject,
-                        });
-                      }}
-                    ></div>
-                  </ShapeCard>
-                  <ShapeCard>
-                    <div>
-                      <img
-                        className="star-img"
-                        src={Star}
-                        alt="star"
-                        onClick={() => {
-                          Ctx.setShowmenu(false);
-                          Ctx.addObject({
-                            type: "shape",
-                            shapeType: "star",
-                            index: props.state.selectedObject,
-                          });
-                        }}
-                      ></img>
-                    </div>
-                  </ShapeCard>
-                </div>
-              </>
-            }
-          />
-          <ModalComponent
-            heading="Text"
-            open={props.state.mainModalType === "text"}
-            button={
-              <IconELement
-                onClick={() => {
-                  handleClick("text");
-                  Ctx.setMainModalType("text");
-                }}
-                image={text}
-                title=""
-              />
-            }
-            body={
-              <>
-                
-                <div className="flex-text">
-                  <div className="title">
-                    <div
-                      type="text"
-                      placeholder="Add a title"
-                      className="title-text"
-                      onClick={(e) => {
-                        props.addObject({
-                          type: "text",
-                          text: title,
-                          textType: "title",
-                          fontSize: 56,
-                          fontFamily: "Arial",
-                          strokeWidth: 0,
-                          index: props.state.selectedObject,
-                        });
-                        e.preventDefault();
-                      }}
-                    >
-                      Add a Title
-                    </div>
-                  </div>
-                  <div className="subtitle">
-                    <div
-                      type="text"
-                      id="subtitle"
-                      placeholder="Add a subtitle"
-                      className="subtitle-text"
-                      onClick={(e) => {
-                        props.addObject({
-                          type: "text",
-                          text: subtitle,
-                          textType: "subtitle",
-                          fontSize: 32,
-                          fontFamily: "Arial",
-                          strokeWidth: 0,
-                          index: props.state.selectedObject,
-                        });
-                        e.preventDefault();
-                      }}
-                    >
-                      Add a Subtitle
-                    </div>
-                  </div>
-                  <div className="body-t">
-                    <div
-                      type="text"
-                      placeholder="Add a body"
-                      className="body-text"
-                      onClick={(e) => {
-                        props.addObject({
-                          type: "text",
-                          textType: "body",
-                          text: body,
-                          fontSize: 22,
-                          fontFamily: "Arial",
-                          strokeWidth: 0,
-                          index: props.state.selectedObject,
-                        });
-                        e.preventDefault();
-                      }}
-                    >
-                      Add a Body
-                    </div>
-                  </div>
-                </div>
-              </>
-            }
-          />
-          <ModalComponent
-            heading="Import"
-            open={props.state.mainModalType === "import"}
-            button={
-              <IconELement
-                onClick={() => {
-                  handleClick("import");
-                  Ctx.setMainModalType("import");
-                }}
-                image={importSVG}
-                title=""
-              />
-            }
-            body={
-              <>
-                <div className="opt-flex">
-                  <div
-                    className={`${
-                      !show ? "opt-text-sideBar" : "opt-text-selected"
-                    }`}
-                    onClick={() => setShow(true)}
-                  >
-                    From Stock Images
-                    {show && (
-                      <div
-                        className={` under-line-1 ${
-                          show ? "slide-in-right" : ""
-                        }`}
-                      ></div>
-                    )}
-                  </div>
-                  <div
-                    className={`${
-                      show ? "opt-text-sideBar" : "opt-text-selected"
-                    }`}
-                    onClick={() => setShow(false)}
-                  >
-                    From Device
-                    {!show && (
-                      <div
-                        className={` under-line-2 ${
-                          !show ? "slide-in-left" : ""
-                        }`}
-                      ></div>
-                    )}
-                  </div>
-                </div>
-                  <div>
-                    <Paper elevation={0} className="md-import-paper">
-                      {photos &&
-                        photos.map((photo, index) => {
-                          return (
-                            <SideBarTemplateContent
-                              className="image-card_"
-                              style={{ margin: "30px" }}
-                              addPexelImg={addPexelImg}
-                              width={photo.width}
-                              height={photo.height}
-                              onClick={(event) => {
-                                props.getImgDataURL(event);
-                                Ctx.showActionMenu();
-                              }}
-                              index={index}
-                              src={photo.src.portrait}
-                              key={index}
-                            />
-                          );
-                        })}
-                    </Paper>
-                  </div>
-                {!show && (
-                  <div className="from-device-import-section-flex">
-                    <div className="from-device-import-section">
-                      <div className="import-img">
-                        <img src={ImportImages} alt="import"></img>
-                      </div>
-                      <label className="import-button">
-                        <span className="import-button-text">Upload File</span>
-                        <Form.Control
-                          type="file"
-                          ref={props.imgRef}
-                          onChange={(e) =>
-                            props.addObject({
-                              type: "image",
-                              e,
-                              index: props.state.selectedObject,
-                            })
-                          }
-                          hidden
-                        />
-                      </label>
-                    </div>
-                  </div>
-                )}
-              </>
-            }
-          />
-        </Hidden> */}
-        <Hidden mdDown>
-          <div
-            onClick={() => {
-              handleClick("templates");
-            }}
-            id="elements"
-            className="group"
-          >
-            <div className={`tempIcon ${props.contentType === "templates"? "selected":""}`} align="center">
-              <TemplatesSVG />
+    <div className="h-full w-full flex flex-col items-center py-4 px-2 bg-gray-900 border-r border-gray-800">
+      {/* Navigation Items */}
+      <div className="flex flex-col space-y-2 w-full">
+            {/* Icons Section */}
+            <div 
+              onClick={() => handleClick("templates")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "templates" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdApps className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Icons</span>
+              {props.contentType === "templates" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
             </div>
-          </div>
-          <div
-            onClick={() => {
-              handleClick("shapes");
-            }}
-            id="templates"
-            className="group"
-            style={{ paddingBottom: "1rem" }}
-          >
-            <div className={`tempIcon ${props.contentType === "shapes"? "selected":""}`} align="center">
-              <ShapesSVG />
+
+            {/* Text Section */}
+            <div 
+              onClick={() => handleClick("text")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "text" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdTextFields className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Text</span>
+              {props.contentType === "text" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
             </div>
-          </div>
-          <div
-            onClick={() => {
-              handleClick("text");
-            }}
-            id="uploads"
-            className="group"
-            style={{ paddingBottom: "1rem" }}
-          >
-            <div className={`tempIcon ${props.contentType === "text"? "selected":""}`} align="center">
-              <TextSVG />
+
+            {/* Shapes Section */}
+            <div 
+              onClick={() => handleClick("shapes")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "shapes" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdCrop className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Shapes</span>
+              {props.contentType === "shapes" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
             </div>
-          </div>
-          <div
-            onClick={() => {
-              handleClick("import");
-            }}
-            id="text"
-            className="group"
-            style={{ paddingBottom: "1rem" }}
-          >
-            <div className={`tempIcon ${props.contentType === "import"? "selected":""}`} align="center">
-              <ImportSVG />
+
+            {/* Upload Section */}
+            <div 
+              onClick={() => handleClick("import")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "import" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdCloudUpload className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Upload</span>
+              {props.contentType === "import" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
             </div>
-          </div>
-          <div
-            onClick={() => {
-              handleClick("styles");
-            }}
-            id="styles"
-            className="group"
-            style={{ paddingBottom: "1rem" }}
-          >
-            <div className={`tempIcon ${props.contentType === "styles"? "selected":""}`} align="center">
-              <StylesSVG />
+
+            {/* Videos Section */}
+            <div 
+              onClick={() => handleClick("videos")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "videos" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdVideoLibrary className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Videos</span>
+              {props.contentType === "videos" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
             </div>
+
+            {/* Background Section */}
+            <div 
+              onClick={() => handleClick("bg-color")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "bg-color" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdPalette className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Background</span>
+              {props.contentType === "bg-color" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
+            </div>
+
+            {/* Layers Section */}
+            <div 
+              onClick={() => handleClick("layers")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "layers" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdLayers className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Layers</span>
+              {props.contentType === "layers" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
+            </div>
+
+            {/* Resize Section */}
+            <div 
+              onClick={() => handleClick("resize")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "resize" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdAspectRatio className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Resize</span>
+              {props.contentType === "resize" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
+            </div>
+
+            {/* Quotes Section */}
+            <div 
+              onClick={() => handleClick("quotes")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "quotes" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdFormatQuote className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">Quotes</span>
+              {props.contentType === "quotes" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
+            </div>
+
+            {/* QR Code Section */}
+            <div 
+              onClick={() => handleClick("qr-code")}
+              className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+                props.contentType === "qr-code" 
+                  ? "bg-blue-600 text-white shadow-lg" 
+                  : "text-gray-400 hover:text-white hover:bg-gray-800"
+              }`}
+            >
+              <div className="mb-1">
+                <MdQrCode className="w-6 h-6" />
+              </div>
+              <span className="text-xs font-medium">QR code</span>
+              {props.contentType === "qr-code" && (
+                <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-blue-400 rounded-full"></div>
+              )}
+            </div>
+        </div>
+
+        {/* Bottom AI Section */}
+        <div className="mt-auto mb-4">
+          <div 
+            onClick={() => handleClick("ai-tools")}
+            className={`cursor-pointer p-3 rounded-lg transition-all duration-200 flex flex-col items-center group relative ${
+              props.contentType === "ai-tools" 
+                ? "bg-gradient-to-r from-purple-600 to-pink-600 text-white shadow-lg" 
+                : "text-gray-400 hover:text-white hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600"
+            }`}
+          >
+            <div className="mb-1">
+              <MdAutoAwesome className="w-6 h-6" />
+            </div>
+            <span className="text-xs font-medium">AI Ting</span>
+            {props.contentType === "ai-tools" && (
+              <div className="absolute -right-2 top-1/2 transform -translate-y-1/2 w-1 h-8 bg-pink-400 rounded-full"></div>
+            )}
           </div>
-        </Hidden>
-        <div
-          onClick={() => {
-            handleClick("bg-color");
-          }}
-          id="styles"
-          className="group"
-          style={{ paddingBottom: "1rem" }}
-        ></div>
-      </div>
-    </>
+        </div>
+    </div>
   );
 }
 

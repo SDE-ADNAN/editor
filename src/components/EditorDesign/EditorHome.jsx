@@ -2,12 +2,12 @@
 import React from "react";
 import BlankPageCard from "./Cards/BlankPageCard";
 import TemplatesCard from "./Cards/TemplatesCard";
-import "./EditorHome.css";
+
 import NavBar from "./NavBar/NavBar";
 import allIcon from "./all.png";
 import { Link } from "react-router-dom";
 import ButtonLarge from "./Buttons/ButtonLarge";
-import { Paper } from "@mui/material";
+// import { Paper } from "@mui/material"; // Replaced with div
 
 const templates = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 

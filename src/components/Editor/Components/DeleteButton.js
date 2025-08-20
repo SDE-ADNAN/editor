@@ -1,7 +1,7 @@
 import React from "react";
 import { Text, Group } from "react-konva";
 // import { Html } from "react-konva-utils";
-import "./DeleteButton.css";
+
 
 const deleteButton = (props) => {
   // console.log(props)

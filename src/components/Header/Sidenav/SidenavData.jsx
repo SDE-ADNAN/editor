@@ -4,7 +4,6 @@ import { List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { Box } from '@mui/system';
 import { Dashboard, Campaign } from '@mui/icons-material';
 
-import classes from './SidenavData.module.css';
 
 function SidenavData(props) {
   const sidenavData = [

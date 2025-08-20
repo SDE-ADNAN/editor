@@ -1,12 +1,9 @@
 /* eslint-disable react/jsx-pascal-case */
 import React, { Suspense } from "react";
-import { Route, Switch } from "react-router";
+import { Routes, Route, Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "./app.scss"
 
 import EditorTemplates from "./components/EditorDesign/EditorTemplates";
-import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
-import { bgwallpaper } from "./media";
 
 const Editor = React.lazy(() => import("./components/Editor/Editor"));
 
@@ -18,29 +15,20 @@ function App() {
   localStorage.setItem("page_view", urlHit2);
 
   return (
-    <div className="App">
-      <div className="image_container blur">
-        <img className="bg_img_main" src={bgwallpaper} alt={"bgimg"}></img>
-      </div>
+    <div className="text-center">
       <Suspense fallback={<p>Loading...</p>}>
-        <Switch>
-          {!isLoggedIn && (
+        <Routes>
+          {!isLoggedIn ? (
             <>
-              <Route path="/" exact>
-                <Redirect to="/editor"/>
-              </Route>
-              <Route path="templates" exact>
-                <EditorTemplates />
-              </Route>
-              <Route path="/editor" exact>
-                <Editor />
-              </Route>
-              <Route path="editor-download" exact>
-                <Editor />
-              </Route>
+              <Route path="/" element={<Navigate to="/editor" replace />} />
+              <Route path="/templates" element={<EditorTemplates />} />
+              <Route path="/editor" element={<Editor />} />
+              <Route path="/editor-download" element={<Editor />} />
             </>
+          ) : (
+            <Route path="*" element={<Navigate to="/editor" replace />} />
           )}
-        </Switch>
+        </Routes>
       </Suspense>
     </div>
   );

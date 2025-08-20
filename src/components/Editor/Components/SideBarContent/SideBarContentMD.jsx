@@ -4,7 +4,6 @@ import { Form } from "react-bootstrap";
 import ShapeCard from "../../../EditorDesign/Cards/ShapeCard";
 import { clientID } from "../constants";
 import ShapesProperties from "../ObjectsProperties";
-import "./SideBarContent.scss";
 import SideBarTemplateContent from "./SideBarContentCard";
 import Star from "./star.png";
 import Triangle from "./triangle.png";

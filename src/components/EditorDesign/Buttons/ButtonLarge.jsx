@@ -1,5 +1,4 @@
 import React from "react";
-import "./ButtonLarge.css";
 
 function ButtonLarge(props) {
   return (

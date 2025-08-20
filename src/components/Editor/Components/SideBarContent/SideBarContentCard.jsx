@@ -2,7 +2,6 @@
 import React, { useContext, useRef } from "react";
 import { EditorCtx } from "../MainEditor";
 
-import "./SideBarContentItem.css";
 
 function SideBarContentCard(props) {
   const Ctx = useContext(EditorCtx);

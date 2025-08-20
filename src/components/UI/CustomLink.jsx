@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import classes from './CustomLink.module.css'
 
 function CustomLink(props) {
     const linkStyle = {

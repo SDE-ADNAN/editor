@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Modal } from "react-bootstrap";
 import { EditorCtx } from "../MainEditor";
-import "./ModalComponent.css";
+
 
 function ModalComponent(props) {
   const [show, setShow] = useState(props.open);

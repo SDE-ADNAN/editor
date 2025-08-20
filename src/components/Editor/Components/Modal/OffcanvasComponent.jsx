@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Offcanvas } from "react-bootstrap";
 // import Offcanvas from "react-bootstrap/Offcanvas";
-import "./ModalComponent.css";
 
 function OffcanvasComponent(props) {
   const [show, setShow] = useState(false);

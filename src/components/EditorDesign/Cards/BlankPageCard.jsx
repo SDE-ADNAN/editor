@@ -1,5 +1,4 @@
 import React from "react";
-import "./Cards.css";
 import addIcon from "./addIcon.png";
 
 function BlankPageCard() {

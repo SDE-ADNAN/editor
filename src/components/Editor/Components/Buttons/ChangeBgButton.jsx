@@ -1,6 +1,5 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import "./ChangeBgButton.css";
 
 function ChangeBgButton(props) {
   return (

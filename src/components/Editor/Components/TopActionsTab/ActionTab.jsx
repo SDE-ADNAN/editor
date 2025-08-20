@@ -1,6 +1,6 @@
 import React, { useContext, useRef } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
-import { Hidden } from "@mui/material";
+
 
 import DeleteIcon from "./images/Delete.png";
 import EditIcon from "./images/Edit.png";
@@ -26,7 +26,7 @@ import Forward from "./images/Forward.png";
 import FontIcon from "./images/Font.png";
 import BackIcon from "./images/Back.png";
 
-import "./ActionTab.css";
+
 import IconELement from "./IconELement";
 import ModalComponent from "../Modal/ModalComponent";
 import FillCard from "../../../EditorDesign/Cards/FillCard";
@@ -185,7 +185,7 @@ function ActionTab(props) {
         >
           flip
         </button> */}
-        <Hidden mdUp>
+        <div className="md:hidden">
           <div>
             <IconELement
               // style={{ marginLeft: "20rem" }}
@@ -202,7 +202,7 @@ function ActionTab(props) {
               id="BackBtn"
             />
           </div>
-        </Hidden>
+        </div>
 
         <div className="actab-elements-div">
           <IconELement

@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { Paper } from "@mui/material";
+// import { Paper } from "@mui/material"; // Replaced with div
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Form } from "react-bootstrap";
 import ShapeCard from "../../../EditorDesign/Cards/ShapeCard";
@@ -12,7 +12,7 @@ import {
   TemplateTwo,
 } from "../constants";
 import ShapesProperties from "../ObjectsProperties";
-import "./SideBarContent.scss";
+
 import SideBarTemplateContent from "./SideBarContentCard";
 import FillCard from "../../../EditorDesign/Cards/FillCard";
 import ImportImages from "../TopActionsTab/images/importImages.png";
@@ -24,21 +24,20 @@ import templateFourImage from "../Templates/Template4/templatefour.png";
 import templateFiveImage from "../Templates/Template5/templatefive.png";
 import templateSixImage from "../Templates/Template6/templatesix.png";
 import { API_URL } from "../../../../constant/apiURL";
-import BookMarkSVG from "../../../../media/shapes_SVGS/BookMarkSVG";
-import ObtuseTriangleSVG from "../../../../media/shapes_SVGS/ObtuseTriangleSVG";
-import TrapeziumSVG from "../../../../media/shapes_SVGS/TrapeziumSVG";
-import ParallelogramSVG from "../../../../media/shapes_SVGS/ParallelogramSVG";
-import KiteSVG from "../../../../media/shapes_SVGS/KiteSVG";
-import OctagonSVG from "../../../../media/shapes_SVGS/OctagonSVG";
-import PlusSVG from "../../../../media/shapes_SVGS/PlusSVG";
-import RightTriangleSVG from "../../../../media/shapes_SVGS/RightTriangleSVG";
-import RightArrowSVG from "../../../../media/shapes_SVGS/RightArrowSVG";
-import PentagonSVG from "../../../../media/shapes_SVGS/PentagonSVG";
-import HexagonSVG from "../../../../media/shapes_SVGS/HexagonSVG";
-import TriangleSVG from "../../../../media/shapes_SVGS/TriangleSVG";
-import StarSVG from "../../../../media/shapes_SVGS/StarSVG";
-import CircleSVG from "../../../../media/shapes_SVGS/CircleSVG";
-import SquareSVG from "../../../../media/shapes_SVGS/SquareSVG";
+
+import { 
+  FaSquare, 
+  FaCircle, 
+  FaStar, 
+  FaPlay 
+} from "react-icons/fa";
+import { 
+  MdCropSquare, 
+  MdRadioButtonUnchecked,
+  MdStarBorder 
+} from "react-icons/md";
+import TextSection from "./TextSection";
+import ShapesSection from "./ShapesSection";
 
 const keywords = [
   "cars",
@@ -243,1056 +242,169 @@ function SideBarContent(props) {
     switch (props.contentType) {
       case "shapes":
         content = (
-          <>
-            <div className="bg">
-              <div className="shape-flex">
-                <div>
-                  <h1 className="template-heading">Shapes</h1>
-                </div>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "rect",
-                        },
-                        type: "Modified",
-                      });
-
-                      Ctx.showActionMenu();
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "rect",
-                        index: props.state.selectedObject,
-                      });
-                    }}
-                  >
-                    <SquareSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "circle",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          radius: 50,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "circle",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <CircleSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "star",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          innerRadius: 15,
-                          outerRadius: 40,
-                          numPoints: 5,
-                          points: [92, 50, 150, 150, 34, 150],
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "star",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <StarSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "triangle",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "triangle",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <TriangleSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "hexagon",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "hexagon",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <HexagonSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "pentagon",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "pentagon",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <PentagonSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "rightArrow",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "rightArrow",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <RightArrowSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "rightTriangle",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "rightTriangle",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <RightTriangleSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "plusShape",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "plusShape",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <PlusSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "octagon",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "octagon",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <OctagonSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "trapezium",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "trapezium",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <TrapeziumSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "kite",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "kite",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <KiteSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "parallelogram",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "parallelogram",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <ParallelogramSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "rhombus",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "rhombus",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <TrapeziumSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "scaleneTriangle",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "scaleneTriangle",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <ObtuseTriangleSVG />
-                  </div>
-                </ShapeCard>
-                <ShapeCard>
-                  <div
-                    className="shapeCard-child-div"
-                    onClick={() => {
-                      props.addObject({
-                        type: "shape",
-                        shapeType: "tag",
-                        index: props.state.selectedObject,
-                      });
-                      Ctx.updateUndoRedo({
-                        index: props.state.objects.length,
-                        object: {
-                          type: "shape",
-                          x: 34,
-                          y: 50,
-                          selected: false,
-                          cornerRadius: 10,
-                          topLeft: 0,
-                          topRight: 0,
-                          bottomLeft: 0,
-                          bottomRight: 0,
-                          fill: "white",
-                          strokeWidth: 1.5,
-                          stroke: "#000000",
-                          shadowColor: "black",
-                          align: "center",
-                          opacity: 1,
-                          shadowOpacity: 1,
-                          shadowBlur: 0,
-                          width: 100,
-                          height: 100,
-                          rotation: 0,
-                          scaleX: 1,
-                          scaleY: 1,
-                          shapeType: "tag",
-                        },
-                        type: "Modified",
-                      });
-                    }}
-                  >
-                    <BookMarkSVG />
-                  </div>
-                </ShapeCard>
-              </div>
-            </div>
-          </>
+          <ShapesSection 
+            addObject={props.addObject}
+            state={props.state}
+          />
         );
         break;
       case "templates":
         content = (
-          <>
-            {/* <div className="bg"> */}
-            <div className="bg-template ">
-              {/* <div>
-                <input
-                  placeholder="enter template name"
-                  type="text "
-                  onChange={(e) => {
-                    setTemplateName(e.target.value);
-                  }}
-                ></input>
-                <TextField
-                  inputRef={inputFileRef}
-                  type="file"
-                  inputProps={{
-                    accept:
-                      "application/x-photoshop, application/octet-stream, image/vnd.adobe.photoshop, application/x-coreldraw, image/*, application/pdf, .cdr",
-                  }}
-                  id="file"
-                  variant="outlined"
-                  required
-                >
-                  template file
-                </TextField>
-                <button
-                  onClick={() => {
-                    if (props.state.selectedObject === null) {
-                      jsonStrHandler();
-                    } else {
-                      alert("pehle deselect karo ");
-                    }
-                  }}
-                >
-                  send json string
-                </button>
-              </div> */}
-              <div className="heading_div">
-                <div className="template-heading">Templates</div>
-              </div>
-              <div className="template-flex">
-                {templates &&
-                  templates.map((template, index) => {
-                    if (template && templates.length > 0) {
-                      return (
-                        <SideBarTemplateContent
-                          index={index}
-                          template={true}
-                          src={template.img}
-                          templateObj={template.obj}
-                        />
-                      );
-                    } else {
-                      return (
-                        <div className="blink_me" style={{ color: "yellow" }}>
-                          {" "}
-                          no templates to show
-                        </div>
-                      );
-                    }
-                  })}
-                {templates &&
-                  templates.map((template, index) => {
-                    if (template && templates.length > 0) {
-                      return (
-                        <SideBarTemplateContent
-                          index={index}
-                          template={true}
-                          src={template.img}
-                          templateObj={template.obj}
-                        />
-                      );
-                    } else {
-                      return (
-                        <div className="blink_me" style={{ color: "yellow" }}>
-                          {" "}
-                          no templates to show
-                        </div>
-                      );
-                    }
-                  })}
-              </div>
+          <div className="p-6">
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Templates</h2>
+              <p className="text-sm text-gray-600">Choose a template to get started</p>
             </div>
-            {/* </div> */}
-          </>
+            <div className="grid grid-cols-2 gap-4">
+              {templates &&
+                templates.map((template, index) => {
+                  if (template && templates.length > 0) {
+                    return (
+                      <div
+                        key={index}
+                        className="bg-gray-50 rounded-lg p-3 hover:bg-gray-100 transition-colors cursor-pointer border border-gray-200 hover:border-gray-300"
+                        onClick={() => props.addTemplate(template.obj)}
+                      >
+                        <div className="aspect-square mb-2 overflow-hidden rounded-md">
+                          <img
+                            src={template.img}
+                            alt={`Template ${index + 1}`}
+                            className="w-full h-full object-cover"
+                          />
+                        </div>
+                        <p className="text-xs text-gray-600 text-center">Template {index + 1}</p>
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={index} className="text-center py-8 text-gray-500">
+                        No templates to show
+                      </div>
+                    );
+                  }
+                })}
+            </div>
+          </div>
         );
         break;
       case "text":
         content = (
-          <>
-            <div className="bg">
-              <div>
-                <h1 className="template-heading">Click to add text</h1>
-              </div>
-              <div className="flex">
-                <div
-                  className="title"
-                  onClick={(e) => {
-                    props.addObject({
-                      type: "text",
-                      text: title,
-                      textType: "title",
-                      fontSize: 56,
-                      fontFamily: "Arial",
-                      strokeWidth: 0,
-                      index: props.state.selectedObject,
-                    });
-                    props.updateUndoRedo({
-                      index: props.state.objects.length,
-                      object: {
-                        type: "text",
-                        x: 150,
-                        y: 150,
-                        text: "Add a Title",
-                        fontSize: 56,
-                        selected: true,
-                        width: 200,
-                        // height: 80,
-                        fontFamily: "Arial",
-                        fill: "#000000",
-                        strokeWidth: 0,
-                        stroke: "#000000",
-                        shadowColor: "#000000",
-                        align: "center",
-                        padding: 5,
-                        letterSpacing: 1,
-                        lineHeight: 1,
-                        textDecoration: "none",
-                        verticalAlign: "top",
-                        opacity: 1,
-                        scaleX: 1,
-                        scaleY: 1,
-                        offsetX: 100,
-                        offsetY: 0,
-                        shadowOpacity: 1,
-                        shadowBlur: 0,
-                      },
-                      type: "Modified",
-                    });
-                    e.preventDefault();
-                    // console.log(title);
-                  }}
-                >
-                  Click to Add a Title
-                </div>
-                <div
-                  className="subtitle"
-                  onClick={(e) => {
-                    props.addObject({
-                      type: "text",
-                      text: subtitle,
-                      textType: "subtitle",
-                      fontSize: 32,
-                      fontFamily: "Arial",
-                      strokeWidth: 0,
-                      index: props.state.selectedObject,
-                    });
-                    props.updateUndoRedo({
-                      index: props.state.objects.length,
-                      object: {
-                        type: "text",
-                        x: 150,
-                        y: 150,
-                        text: "Add a subtitle",
-                        textType: "subtitle",
-                        fontSize: 32,
-                        selected: true,
-                        width: 200,
-                        // height: 80,
-                        fontFamily: "Arial",
-                        fill: "#000000",
-                        strokeWidth: 0,
-                        stroke: "#000000",
-                        shadowColor: "#000000",
-                        align: "center",
-                        padding: 5,
-                        letterSpacing: 1,
-                        lineHeight: 1,
-                        textDecoration: "none",
-                        verticalAlign: "top",
-                        opacity: 1,
-                        scaleX: 1,
-                        scaleY: 1,
-                        offsetX: 100,
-                        offsetY: 0,
-                        shadowOpacity: 1,
-                        shadowBlur: 0,
-                      },
-                      type: "Modified",
-                    });
-                    e.preventDefault();
-                  }}
-                >
-                  Click to Add a subtitle
-                </div>
-                <div
-                  className="body-t"
-                  onClick={(e) => {
-                    props.addObject({
-                      type: "text",
-                      textType: "body",
-                      text: body,
-                      fontSize: 22,
-                      fontFamily: "Arial",
-                      strokeWidth: 0,
-                      index: props.state.selectedObject,
-                    });
-                    props.updateUndoRedo({
-                      index: props.state.objects.length,
-                      object: {
-                        type: "text",
-                        x: 150,
-                        y: 150,
-                        text: "Add a body",
-                        textType: "body",
-                        fontSize: 22,
-                        selected: true,
-                        width: 200,
-                        // height: 80,
-                        fontFamily: "Arial",
-                        fill: "#000000",
-                        strokeWidth: 0,
-                        stroke: "#000000",
-                        shadowColor: "#000000",
-                        align: "center",
-                        padding: 5,
-                        letterSpacing: 1,
-                        lineHeight: 1,
-                        textDecoration: "none",
-                        verticalAlign: "top",
-                        opacity: 1,
-                        scaleX: 1,
-                        scaleY: 1,
-                        offsetX: 100,
-                        offsetY: 0,
-                        shadowOpacity: 1,
-                        shadowBlur: 0,
-                      },
-                      type: "Modified",
-                    });
-                    e.preventDefault();
-                    // console.log(e.target);
-                  }}
-                >
-                  Click to Add a body
-                </div>
-              </div>
-            </div>
-          </>
+          <TextSection 
+            addObject={props.addObject}
+            updateUndoRedo={props.updateUndoRedo}
+            selectedObject={props.state.selectedObject}
+            objectsLength={props.state.objects.length}
+          />
         );
         break;
       case "import":
         content = (
-          <>
-            <div className="bg">
+          <div className="p-6">
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Upload</h2>
+              <p className="text-sm text-gray-600">Add images to your design</p>
+            </div>
+            
+            {/* Tab Navigation */}
+            <div className="flex border-b border-gray-200 mb-6">
+              <button
+                className={`px-4 py-2 text-sm font-medium ${
+                  show
+                    ? "text-blue-600 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+                onClick={() => setShow(true)}
+              >
+                Stock Images
+              </button>
+              <button
+                className={`px-4 py-2 text-sm font-medium ${
+                  !show
+                    ? "text-blue-600 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+                onClick={() => setShow(false)}
+              >
+                Upload
+              </button>
+            </div>
+
+            {show && (
               <div>
-                <h1 className="template-heading">Import Images</h1>
-              </div>
-              <div className="opt-flex">
-                <div
-                  className={!show ? "opt-text" : "opt-text-selected"}
-                  onClick={() => setShow(true)}
-                >
-                  From Stock Images
+                {/* Search Input */}
+                <div className="mb-4">
+                  <input
+                    type="text"
+                    placeholder="Search for images..."
+                    value={searchText}
+                    onChange={(e) => handleChange(e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  />
                 </div>
-                <div
-                  className={show ? "opt-text" : "opt-text-selected"}
-                  onClick={() => setShow(false)}
-                >
-                  From Device
-                </div>
-              </div>
-              {/* {imgLoading && <p style={{ marginTop: "20px" }}> Loading... </p>} */}
-              {show && (
-                <div className="browse-image" style={{ marginTop: 30 }}>
-                  {/* <a href="https://unsplash.com/" target="_blank">
-                    <label className="import-button">
-                      <span className="import-button-text">Browse on web</span>
-                      <Form.Control type="button" hidden />
-                    </label>
-                  </a> */}
-                  <div className="search-filter" style={{ marginBottom: 10 }}>
-                    <span>Search:</span>
-                    <input
-                      style={{ marginLeft: 5, flex: 1 }}
-                      type="text"
-                      placeholder="Type to search..."
-                      value={searchText}
-                      onChange={(e) => handleChange(e.target.value)}
-                    />
-                  </div>
-                  <div elevation={0} className="import-paper">
-                    {photos.length > 0 &&
-                      photos.map((photo, index) => {
-                        if (photo) {
-                          return (
-                            <SideBarTemplateContent
-                              style={{ margin: "30px" }}
-                              addPexelImg={addPexelImg}
-                              width={300}
-                              height={300}
-                              onClick={(event) => {
-                                props.getImgDataURL(event);
-                              }}
-                              key={index}
-                              src={photo.src.large2x}
-                              template={false}
-                              name={photo.name}
-                            />
-                          );
-                        } else {
-                          return <p> Loading... </p>;
-                        }
-                      })}
-                  </div>
-                </div>
-              )}
-              {!show && (
-                <div className="from-device-import-section-flex">
-                  <div className="from-device-import-section">
-                    <div className="import-img">
-                      <img src={ImportImages} alt="import"></img>
-                    </div>
-                    <label className="import-button">
-                      <span className="import-button-text">Upload File</span>
-                      <Form.Control
-                        type="file"
-                        ref={props.imgRef}
-                        onChange={(e) => {
-                          props.addObject({
+                
+                {/* Image Grid */}
+                <div className="grid grid-cols-2 gap-3 max-h-96 overflow-y-auto">
+                  {photos.length > 0 ? (
+                    photos.map((photo, index) => (
+                      <div
+                        key={index}
+                        className="aspect-square overflow-hidden rounded-lg cursor-pointer hover:opacity-80 transition-opacity"
+                        onClick={() => {
+                          addPexelImg({
                             type: "image",
-                            e,
-                            index: props.state.selectedObject,
+                            dataUri: photo.src.large2x,
+                            height: photo.height,
+                            width: photo.width,
                           });
                         }}
-                        hidden
-                      />
-                    </label>
-                  </div>
+                      >
+                        <img
+                          src={photo.src.medium}
+                          alt={photo.alt || "Stock photo"}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                    ))
+                  ) : (
+                    <div className="col-span-2 text-center py-8 text-gray-500">
+                      <p>Search for images above</p>
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </>
+              </div>
+            )}
+
+            {!show && (
+              <div className="text-center">
+                <div className="border-2 border-dashed border-gray-300 rounded-lg p-8 hover:border-gray-400 transition-colors">
+                  <div className="mb-4">
+                    <img src={ImportImages} alt="Upload" className="mx-auto w-12 h-12 opacity-50" />
+                  </div>
+                  <label className="cursor-pointer">
+                    <span className="text-sm text-gray-600 hover:text-gray-800">
+                      Click to upload an image
+                    </span>
+                    <Form.Control
+                      type="file"
+                      ref={props.imgRef}
+                      onChange={(e) => {
+                        props.addObject({
+                          type: "image",
+                          e,
+                          index: props.state.selectedObject,
+                        });
+                      }}
+                      accept="image/*"
+                      hidden
+                    />
+                  </label>
+                  <p className="text-xs text-gray-400 mt-2">
+                    Supports: JPG, PNG, GIF, WebP
+                  </p>
+                </div>
+              </div>
+            )}
+          </div>
         );
         break;
       case "styles":
@@ -1326,64 +438,64 @@ function SideBarContent(props) {
         break;
       case "bg-color":
         content = (
-          <>
-            <div className="bg">
-              <div>
-                <h1 className="template-heading">Background Color</h1>
-              </div>
-              <div className="opt-flex">
-                <div
-                  className={!show ? "opt-text" : "opt-text-selected"}
-                  onClick={() => setShow(true)}
-                >
-                  Solid Color
-                  {show && <div className="under-line-2"></div>}
-                </div>
-                <div
-                  className={show ? "opt-text" : "opt-text-selected"}
-                  onClick={() => setShow(false)}
-                >
-                  Gradiant color
-                  {!show && <div className="under-line-2"></div>}
-                </div>
-              </div>
-              {show && (
-                <>
-                  <div style={{ margin: "20px" }} className="bg-color-flex">
-                    {solidColors.map((color, index) => {
-                      return (
-                        <>
-                          <div>
-                            <FillCard
-                              color={color}
-                              index={index}
-                              show={show}
-                              onclick={colorfill}
-                            />
-                          </div>
-                        </>
-                      );
-                    })}
-                  </div>
-                </>
-              )}
-              {!show && (
-                <>
-                  <div style={{ margin: "20px" }} className="bg-color-flex">
-                    {gradientColors.map((color, index) => {
-                      return (
-                        <>
-                          <div>
-                            <FillCard color={color} index={index} show={show} />
-                          </div>
-                        </>
-                      );
-                    })}
-                  </div>
-                </>
-              )}
+          <div className="p-6">
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-gray-900 mb-2">Background</h2>
+              <p className="text-sm text-gray-600">Choose a background color</p>
             </div>
-          </>
+            
+            {/* Tab Navigation */}
+            <div className="flex border-b border-gray-200 mb-6">
+              <button
+                className={`px-4 py-2 text-sm font-medium ${
+                  show
+                    ? "text-blue-600 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+                onClick={() => setShow(true)}
+              >
+                Solid
+              </button>
+              <button
+                className={`px-4 py-2 text-sm font-medium ${
+                  !show
+                    ? "text-blue-600 border-b-2 border-blue-600"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+                onClick={() => setShow(false)}
+              >
+                Gradient
+              </button>
+            </div>
+
+            {show && (
+              <div className="grid grid-cols-4 gap-3">
+                {solidColors.map((color, index) => (
+                  <div
+                    key={index}
+                    className="aspect-square rounded-lg cursor-pointer border-2 border-gray-200 hover:border-gray-400 transition-colors"
+                    style={{ backgroundColor: color }}
+                    onClick={(e) => colorfill(e, color)}
+                    title={color}
+                  />
+                ))}
+              </div>
+            )}
+
+            {!show && (
+              <div className="grid grid-cols-2 gap-3">
+                {gradientColors.map((color, index) => (
+                  <div
+                    key={index}
+                    className="aspect-square rounded-lg cursor-pointer border-2 border-gray-200 hover:border-gray-400 transition-colors"
+                    style={{ background: color }}
+                    onClick={(e) => colorfill(e, color)}
+                    title={`Gradient ${index + 1}`}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
         );
         break;
       default:
@@ -1391,7 +503,11 @@ function SideBarContent(props) {
     }
     return content;
   };
-  return <>{getContent()}</>;
+  return (
+    <div className="h-full bg-white">
+      {getContent()}
+    </div>
+  );
 }
 
 export default SideBarContent;

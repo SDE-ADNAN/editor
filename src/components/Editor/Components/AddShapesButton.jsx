@@ -1,49 +1,48 @@
 import * as React from "react";
-// import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import { Button } from "@mui/material";
-// import { Button } from "react-bootstrap";
 
-const shapes = ["Rectangle", "Circle", "Star"];
+const shapes = [
+  { name: "Rectangle", action: "addRects" },
+  { name: "Circle", action: "addCircle" },
+  { name: "Star", action: "addStar" }
+];
 
 function AddShapesButton(props) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const [isOpen, setIsOpen] = React.useState(false);
+
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen);
   };
-  const handleClose = () => {
-    setAnchorEl(null);
+
+  const handleShapeClick = (actionName) => {
+    if (props[actionName]) {
+      props[actionName]();
+    }
+    setIsOpen(false);
   };
 
   return (
-    <div>
-      <Button
-         variant="outline-primary"
-        onClick={handleClick}
+    <div className="relative">
+      <button
+        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-medium"
+        onClick={toggleDropdown}
       >
         ADD SHAPES
-      </Button>
-      <Menu
-        id="basic-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          "aria-labelledby": "basic-button",
-        }}
-      >
-        <MenuItem onClick={handleClose}>
-          <Button fullWidth onClick={()=>props.addRects()}>{shapes[0]}</Button>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Button fullWidth onClick={ ()=>props.addCircle()}>{shapes[1]}</Button>
-        </MenuItem>
-        <MenuItem onClick={handleClose}>
-          <Button  fullWidth onClick={()=>props.addStar()}>{shapes[2]}</Button>
-        </MenuItem>
-      </Menu>
+      </button>
+      {isOpen && (
+        <div className="absolute top-full left-0 mt-1 bg-white border border-gray-200 rounded-lg shadow-lg z-50 min-w-[150px]">
+          <div className="py-1">
+            {shapes.map((shape, index) => (
+              <button
+                key={index}
+                className="w-full px-4 py-2 text-left hover:bg-gray-100"
+                onClick={() => handleShapeClick(shape.action)}
+              >
+                {shape.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 }

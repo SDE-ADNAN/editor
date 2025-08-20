@@ -356,7 +356,6 @@ import AddedImage from "./AddedImage";
 import TextProperties from "./TextProperties";
 import Download from "./Download";
 import Size from "./Size";
-import classes from "./MemeGenerator.Module.css";
 // import Rectangles from "./Rectangles";
 
 import { Button, Grid } from "@mui/material";

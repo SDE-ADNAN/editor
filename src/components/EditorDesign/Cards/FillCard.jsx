@@ -1,5 +1,4 @@
 import React from "react";
-import "./FillCard.css";
 
 function FillCard(props) {
   let color = props.color;

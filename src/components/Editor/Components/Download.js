@@ -3,9 +3,8 @@ import jsPDF from "jspdf";
 import React, { useState } from "react";
 import { Button, Modal, Form } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { API_URL } from "../../../constant/apiURL";
-import "./Download.css";
+
 import DownloadPNG from "./DownloadPNG.png";
 import DownloadPDF from "./DownloadPDF.png";
 
@@ -16,7 +15,6 @@ const Download = (props) => {
 
   const token = useSelector((state) => state.auth.token);
   const type = "ER";
-  const history = useHistory();
 
   const downloadPNGURI = (uri, name) => {
     var link = document.createElement("a");

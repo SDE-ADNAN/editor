@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import NavBar from "./NavBar/NavBar";
-import "./EditorTemplates.css";
+
 import { Link } from "react-router-dom";
 import ButtonLarge from "./Buttons/ButtonLarge";
 import TemplatesCard from "./Cards/TemplatesCard";

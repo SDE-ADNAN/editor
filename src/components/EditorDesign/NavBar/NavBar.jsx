@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import "./NavBar.css";
+
 import BackPNG from "./Back.png";
 import infoPNG from "./info.png";
 import { Link } from "react-router-dom";
-import { Hidden } from "@mui/material";
+// import { Hidden } from "@mui/material"; // Removed MUI dependency
 
 function NavBar(props) {
   return (

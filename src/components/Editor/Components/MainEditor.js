@@ -1,11 +1,17 @@
 /* eslint-disable no-unused-vars */
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import axios from "axios";
-import "./MainEditor.scss"
+
 import { } from "lodash";
 import { Stage, Layer, Rect } from "react-konva";
-import { Hidden, Paper } from "@mui/material";
+
+// import { Paper } from "@mui/material"; // Replaced with div
 import { Form, Button } from "react-bootstrap";
+import { 
+  MdMenu, 
+  MdNotifications, 
+  MdGetApp 
+} from "react-icons/md";
 
 import {
   maxStageWidth,
@@ -16,7 +22,6 @@ import {
 import CanvasImage from "./CanvasImage";
 import Download from "./Download";
 import CanvasText from "./CanvasText";
-import classes from "./MainEditor.Module.css";
 import AddedImage from "./AddedImage";
 import ObjectsProperties from "./ObjectsProperties";
 import AddShapesButton from "./AddShapesButton";
@@ -25,12 +30,12 @@ import DELETE from "./DELETE";
 import LayersMenu from "./LayersMenu";
 import SideBar from "../Components/SideBar/SideBar";
 import SideBarContent from "./SideBarContent/SideBarContent";
-import ActionTab from "./TopActionsTab/ActionTab";
+import ModernToolbar from "./TopActionsTab/ModernToolbar";
 import ChangeBgButton from "./Buttons/ChangeBgButton";
 import NavBar from "../../EditorDesign/NavBar/NavBar";
 import Home from "../home.png";
 import downloadIcon from "../DownloadIcon.png";
-import { StarTwoTone } from "@mui/icons-material";
+
 import Shapes from "./Shapes/Shape";
 import Stack from "../../DataStructures/Stack";
 
@@ -56,7 +61,7 @@ const MemeGenerator = () => {
     stageWidth: maxStageWidth,
     stageHeight: maxStageWidth * 1.4142,
     stageScale: 1,
-    contentType: "templates",
+    contentType: "text",
     mainModalType: "",
     subModalType: "",
     showAcTab: false,
@@ -1303,10 +1308,9 @@ const MemeGenerator = () => {
           }
           linkText="/pamphlet/create/editor-home"
         /> */}
-        <div className="editor_main_container">
-          <div
-            className={"sideBar"}
-          >
+        <div className="flex h-screen bg-gray-100 overflow-hidden">
+          {/* Left Navigation Sidebar */}
+          <div className="w-20 bg-gray-900 flex-shrink-0 flex flex-col">
             <SideBar
               setContent={setContent}
               state={state}
@@ -1319,105 +1323,93 @@ const MemeGenerator = () => {
               handleShapeProperties={handleObjectChange}
               shape={objects[selectedObject]}
               contentType={contentType}
-            // style={{ paddingTop: "10.8vh" }}
             />
           </div>
-          <Hidden mdDown>
-            <div
-              item
-              className={"sideBarContent"}
-            // style={{ width: "31vw" }}
-            >
-              <SideBarContent
-                getImgDataURL={getImgDataURL}
-                addObject={addObject}
+          
+          {/* Content Sidebar */}
+          <div className="w-80 bg-white border-r border-gray-300 overflow-y-auto flex-shrink-0 shadow-sm">
+            <SideBarContent
+              getImgDataURL={getImgDataURL}
+              addObject={addObject}
+              state={state}
+              imgRef={imgRef}
+              clientID={clientID}
+              imageName={imageName}
+              addTemplate={addTemplate}
+              updateUndoRedo={updateUndoRedo}
+              setImageName={setImageName}
+              handleShapeProperties={handleObjectChange}
+              shape={objects[selectedObject]}
+              contentType={contentType}
+            />
+          </div>
+          {/* Main Content Area */}
+          <div className="flex-1 flex flex-col bg-white">
+            {/* Top Navigation Bar */}
+            <div className="h-16 bg-white border-b border-gray-300 flex items-center justify-between px-6 shadow-sm">
+              <div className="flex items-center space-x-4">
+                <MdMenu className="w-6 h-6 text-gray-600" />
+                <span className="text-lg font-semibold text-gray-800">Design name</span>
+              </div>
+              <div className="flex items-center space-x-4">
+                <button className="text-gray-600 hover:text-gray-800 font-medium">For developers</button>
+                <button className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 font-medium">
+                  Beautify
+                </button>
+                <button className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 flex items-center space-x-2 font-medium">
+                  <MdGetApp className="w-4 h-4" />
+                  <span>Download</span>
+                </button>
+                <div className="w-8 h-8 bg-orange-400 rounded-full flex items-center justify-center cursor-pointer hover:bg-orange-500 transition-colors">
+                  <MdNotifications className="w-4 h-4 text-white" />
+                </div>
+              </div>
+            </div>
+            {/* Modern Toolbar */}
+            <div className="w-full">
+              <ModernToolbar
                 state={state}
-                imgRef={imgRef}
-                clientID={clientID}
-                imageName={imageName}
-                addTemplate={addTemplate}
-                updateUndoRedo={updateUndoRedo}
-                setImageName={setImageName}
-                handleShapeProperties={handleObjectChange}
-                shape={objects[selectedObject]}
-                contentType={contentType}
-                style={{ paddingTop: "10.8vh" }}
+                selectedObject={selectedObject}
+                shape={state.objects[selectedObject]}
+                onDeleteObject={() => {
+                  if (selectedObject !== null) {
+                    deleteObject({
+                      type: state.objects[selectedObject].type,
+                      index: selectedObject,
+                    });
+                  }
+                }}
+                onDuplicateObject={() => {
+                  if (selectedObject !== null) {
+                    duplicate(state.objects, state.objects[selectedObject]);
+                  }
+                }}
               />
             </div>
-          </Hidden>
-          <div className="stage_nd_actionTab">
-            <Hidden mdDown>
-              <div className={"main"} >
-                <ActionTab
-                  addBackground={addBackground}
-                  dataURL={returnDataURL}
-                  width={stageWidth}
-                  height={stageHeight}
-                  state={state}
-                  shape={state.objects[state.selectedObject]}
-                  index={selectedObject}
-                  delete={deleteObject}
-                  layerFunc={layerFunc}
-                  selectedObject={selectedObject}
-                  deleteALL={deleteALL}
-                  addTemplate={addTemplate}
-                  addObject={addObject}
-                  imgRef={imgRef}
-                  showMenu={state.showMenu}
-                  showActionMenu={showActionMenu}
-                />
-              </div>
-            </Hidden>
-
-            {state.showMenu && (
-              <Hidden mdUp>
-                <div className={"main"} >
-                  <ActionTab
-                    addBackground={addBackground}
-                    dataURL={returnDataURL}
-                    width={stageWidth}
-                    height={stageHeight}
-                    state={state}
-                    shape={state.objects[state.selectedObject]}
-                    index={selectedObject}
-                    delete={deleteObject}
-                    layerFunc={layerFunc}
-                    selectedObject={selectedObject}
-                    deleteALL={deleteALL}
-                    addTemplate={addTemplate}
-                    addObject={addObject}
-                    imgRef={imgRef}
-                  />
-                </div>
-              </Hidden>
-            )}
-            <div className="stage_wrapper">
-              <Stage
-                className="stage123"
-                // onClick={stageOnClick}
-                // draggable
-                // style={{ border: "2px solid black" }}
-                onMouseDown={(e) => {
-                  checkDeselect(e);
-                }}
-                onWheel={(e) => {
-                  handleWheel(e);
-                }}
-                onTouchStart={(e) => {
-                  checkDeselect(e);
-                }}
-                scaleX={state.stageScale}
-                scaleY={state.stageScale}
-                // scaleX={scale}
-                // scaleY={scale}
-                // scale={scale}
-                // className={"canvas}
-                width={state.stageWidth}
-                x={state.x}
-                y={state.y}
-                height={stageWidth * 1.4142}
-                ref={stageRef}
-              >
+            {/* Canvas Area */}
+            <div className="flex-1 flex items-center justify-center p-8 bg-gradient-to-br from-gray-50 to-gray-100">
+              <div className="relative">
+                {/* Canvas Container */}
+                <div className="bg-white shadow-2xl rounded-xl border border-gray-200 overflow-hidden">
+                  <Stage
+                    className="[&>canvas]:bg-white"
+                    onMouseDown={(e) => {
+                      checkDeselect(e);
+                    }}
+                    onWheel={(e) => {
+                      handleWheel(e);
+                    }}
+                    onTouchStart={(e) => {
+                      checkDeselect(e);
+                    }}
+                    scaleX={state.stageScale}
+                    scaleY={state.stageScale}
+                    width={state.stageWidth}
+                    x={state.x}
+                    y={state.y}
+                    height={stageWidth * 1.4142}
+                    ref={stageRef}
+                  >
                 <Layer>
                   <CanvasImage
                     src={
@@ -1519,8 +1511,23 @@ const MemeGenerator = () => {
                         return null;
                       }
                     })}
-                </Layer>
-              </Stage>
+                  </Layer>
+                  </Stage>
+                </div>
+                
+                {/* Page Indicator & Zoom Controls */}
+                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black bg-opacity-80 text-white px-4 py-2 rounded-full flex items-center space-x-4">
+                  <button className="hover:bg-white hover:bg-opacity-20 p-1 rounded">
+                    ← Pages
+                  </button>
+                  <span className="text-sm">60%</span>
+                  <button className="hover:bg-white hover:bg-opacity-20 p-1 rounded">
+                    <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
             </div>
 
           </div>
